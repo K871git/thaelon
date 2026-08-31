@@ -1,6 +1,6 @@
 const EMAIL = 'gangardekishor87@gmail.com'
 const GITHUB = 'https://github.com/K871git'
-const PHONE = '+91-7499621927'
+const PHONE = '7499621927'
 
 const CARDS = [
   {
