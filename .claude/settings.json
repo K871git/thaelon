@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"d:\\\\new_live\\\\thaelon\\\\src\" -Recurse | Select-Object FullName, Attributes | Where-Object { $_.Attributes -notmatch \"Directory\" })",
+      "Bash(npm run *)"
+    ]
+  }
+}

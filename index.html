@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./Fav2-rembg.png" />
+    <link rel="shortcut icon" href="./Fav2-rembg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>THAELON — Imagine. Engineer. Evolve.</title>
+    <meta name="title" content="THAELON — Imagine. Engineer. Evolve." />
+    <meta
+      name="description"
+      content="Ghost-Team is a purposeful engineering team building technology that matters. Full-stack development, software engineering, API integration, and database administration — scoped to your requirements."
+    />
+    <meta
+      name="keywords"
+      content="software engineering, full-stack development, web development, API development, database administration, React, Node.js, PHP, Python, Ghost-Team, THAELON"
+    />
+    <meta name="author" content="Ghost-Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#09090f" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="THAELON — Imagine. Engineer. Evolve." />
+    <meta
+      property="og:description"
+      content="Ghost-Team builds purposeful technology. Focused on craft, driven by curiosity — working on what matters next."
+    />
+    <meta property="og:site_name" content="THAELON" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="THAELON — Imagine. Engineer. Evolve." />
+    <meta
+      name="twitter:description"
+      content="Ghost-Team builds purposeful technology. Focused on craft, driven by curiosity."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FOUC prevention -->
+    <script>
+      try {
+        var t = localStorage.getItem("thaelon-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" || t === "dark" ? t : "dark");
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ghost-Team",
+        "brand": { "@type": "Brand", "name": "THAELON" },
+        "description": "A purposeful engineering team building technology that matters. Full-stack development, software engineering, API integration, and database administration.",
+        "slogan": "Imagine. Engineer. Evolve.",
+        "knowsAbout": [
+          "Software Engineering",
+          "Full-Stack Development",
+          "API Development",
+          "Database Administration",
+          "Web Development"
+        ]
+      }
+    </script>
+  </body>
+</html>
