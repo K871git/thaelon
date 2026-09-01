@@ -84,7 +84,7 @@ export default function Nav({ theme, onToggleTheme }) {
   return (
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="container nav__inner">
-        <a href="/" className="nav__logo" onClick={close}>
+        <a href="/thaelon" className="nav__logo" onClick={close}>
           <img src="./Thaelon-removebg.png" alt="THAELON" className="nav__logo-img" />
         </a>
 
