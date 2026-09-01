@@ -3,6 +3,7 @@ export const specializations = [
   'Software Engineering',
   'API Development & Integration',
   'Database Administration',
+  'AI Integration',
 ]
 
 const skills = [
@@ -16,13 +17,13 @@ const skills = [
     category: 'Frontend',
     color: 'blue',
     desc: 'Interfaces that feel as good as they work.',
-    items: ['React', 'Angular', 'HTML & CSS', 'Responsive Design', 'Accessibility'],
+    items: ['React', 'TypeScript', 'Angular', 'HTML & CSS', 'Responsive Design', 'Accessibility'],
   },
   {
     category: 'Backend & APIs',
     color: 'emerald',
     desc: 'Servers, services, and the logic in between.',
-    items: ['Node.js', 'Express', 'Laravel', 'FastAPI', 'REST APIs'],
+    items: ['Node.js', 'Express', 'Laravel', 'FastAPI', 'Ollama', 'REST APIs'],
   },
   {
     category: 'Databases',

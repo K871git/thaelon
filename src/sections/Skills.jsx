@@ -122,6 +122,9 @@ export default function Skills() {
         {modal && (
           <div data-color={modal.color}>
             <div className="skills-modal__header">
+              <div className="skills-modal__icon-wrap" aria-hidden="true">
+                {ICONS[modal.category]}
+              </div>
               <span className="section-label">{modal.category}</span>
               <p>{modal.desc}</p>
             </div>
