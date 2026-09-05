@@ -9,7 +9,6 @@ import Skills from './sections/Skills'
 import Process from './sections/Process'
 import Projects from './sections/Projects'
 import Pricing from './sections/Pricing'
-import Future from './sections/Future'
 import Contact from './sections/Contact'
 import useScrollReveal from './hooks/useScrollReveal'
 // import Team from './sections/Team'
@@ -43,7 +42,6 @@ export default function App() {
         <Process />
         <Projects />
         <Pricing />
-        <Future />
         <Contact />
       </main>
       <Footer />

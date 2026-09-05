@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import skills, { specializations } from '../data/skills'
+import SKILL_ICONS from '../data/skillIcons'
 import Modal from '../components/Modal'
 
 const ICONS = {
@@ -46,6 +47,26 @@ const ICONS = {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <polyline points="4 17 10 11 4 5" />
       <line x1="12" y1="19" x2="20" y2="19" />
+    </svg>
+  ),
+  'AI & LLMs': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="4" cy="6" r="2" />
+      <circle cx="4" cy="18" r="2" />
+      <circle cx="12" cy="12" r="2" />
+      <circle cx="20" cy="6" r="2" />
+      <circle cx="20" cy="18" r="2" />
+      <line x1="6" y1="6.8" x2="10" y2="11" />
+      <line x1="6" y1="17.2" x2="10" y2="13" />
+      <line x1="14" y1="11" x2="18" y2="6.8" />
+      <line x1="14" y1="13" x2="18" y2="17.2" />
+    </svg>
+  ),
+  'Desktop & Builds': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L11 21.73a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+      <line x1="12" y1="22.08" x2="12" y2="12" />
     </svg>
   ),
 }
@@ -130,7 +151,12 @@ export default function Skills() {
             </div>
             <ul className="skills-modal__items">
               {modal.items.map(item => (
-                <li key={item}>{item}</li>
+                <li key={item}>
+                  {SKILL_ICONS[item] && (
+                    <span className="skills-modal__item-icon">{SKILL_ICONS[item]}</span>
+                  )}
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
