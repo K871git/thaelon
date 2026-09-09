@@ -15,18 +15,19 @@ export default function About() {
               A team that builds<br />with intention
             </h2>
             <p className="about__body reveal" style={{ '--reveal-delay': '0.08s' }}>
-              Ghost-Team is a small group of engineers who believe that the best
-              technology is purposeful, precise, and human. We don't build for the
-              sake of building — we build because a problem is worth solving.
+              Thaelon is a team of engineers who believe the best technology is
+              purposeful, precise, and built to last. We don't build for the sake
+              of building — we build because a problem is genuinely worth solving.
             </p>
             <p className="about__body reveal" style={{ '--reveal-delay': '0.14s' }}>
               We value clarity in design, depth in engineering, and honesty in every
-              decision. Whether it's a system under the hood or an interface a person
-              interacts with, we care about getting it right.
+              decision. Whether it's a system running under the hood or a product
+              someone uses every single day — we care about getting it right.
             </p>
             <p className="about__body reveal" style={{ '--reveal-delay': '0.20s' }}>
-              THAELON is our identity while we build toward something larger. This is
-              where we show our work, share who we are, and document our thinking.
+              We build our own software and take on client work where we can deliver
+              exceptional results — AI integrations, full-stack applications, clinical
+              systems, and custom desktop tools. Scoped to what you need. Shipped on time.
             </p>
           </div>
 

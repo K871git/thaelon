@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 
-const NAV_SECTIONS = ['about', 'skills', 'process', 'projects', 'pricing', 'contact']
+const NAV_SECTIONS = ['about', 'skills', 'process', 'products', 'pricing', 'contact']
 const NAV_LINKS = [
   ['#about',    'About',    'about'],
   ['#skills',   'Skills',   'skills'],
   ['#process',  'Process',  'process'],
-  ['#projects', 'Projects', 'projects'],
+  ['#products', 'Products', 'products'],
   ['#pricing',  'Pricing',  'pricing'],
   ['#contact',  'Contact',  'contact'],
 ]
@@ -84,7 +84,7 @@ export default function Nav({ theme, onToggleTheme }) {
   return (
     <header className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="container nav__inner">
-        <a href="/thaelon" className="nav__logo" onClick={close}>
+        <a href="/" className="nav__logo" onClick={close}>
           <img src="./Thaelon-removebg.png" alt="THAELON" className="nav__logo-img" />
         </a>
 

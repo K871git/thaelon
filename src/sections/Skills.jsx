@@ -3,6 +3,90 @@ import skills, { specializations } from '../data/skills'
 import SKILL_ICONS from '../data/skillIcons'
 import Modal from '../components/Modal'
 
+const CAPABILITIES = [
+  {
+    name: 'CS Fundamentals',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+  },
+  {
+    name: 'System Design & Architecture',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Production Engineering',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Security & Reliability',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    name: 'AI & Agent Engineering',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="4" cy="6" r="2" /><circle cx="4" cy="18" r="2" />
+        <circle cx="12" cy="12" r="2" /><circle cx="20" cy="6" r="2" /><circle cx="20" cy="18" r="2" />
+        <path d="M6 6.8 10 11M6 17.2 10 13M14 11l4-4.2M14 13l4 4.2" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Domain Expertise',
+    level: 'extreme',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" />
+        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17" /><line x1="14.83" y1="14.83" x2="19.07" y2="19.07" />
+        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93" /><line x1="4.93" y1="19.07" x2="9.17" y2="14.83" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Product & Business Judgment',
+    level: 'high',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 6H8c-1.5-1.5-3-3.5-3-6a7 7 0 0 1 7-7z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Communication & Leadership',
+    level: 'high',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
+]
+
 const ICONS = {
   Languages: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -136,6 +220,38 @@ export default function Skills() {
               <span className="skills__card-cta" aria-hidden="true">Click to expand →</span>
             </div>
           ))}
+        </div>
+
+        {/* Next-gen engineering capabilities */}
+        <div className="capabilities">
+          <div className="capabilities__intro reveal" style={{ '--reveal-delay': '0.05s' }}>
+            <span className="capabilities__eyebrow">Next-Gen Engineering</span>
+            <h3 className="capabilities__heading">Built for the AI era</h3>
+            <p className="capabilities__sub">
+              Most engineering teams are deep in one layer and shallow everywhere else. That
+              worked before. AI-era products break at the seams — between model and API,
+              API and frontend, code and cloud, logic and business decision. Thaelon was
+              built to be the team that goes deep across all eight, so the product holds
+              together end to end — not just the part one person owns.
+            </p>
+          </div>
+          <div className="capabilities__grid">
+            {CAPABILITIES.map((cap, i) => (
+              <div
+                key={cap.name}
+                className={`capabilities__item reveal capabilities__item--${cap.level}`}
+                style={{ '--reveal-delay': `${i * 0.05}s` }}
+              >
+                <div className="capabilities__icon-wrap" aria-hidden="true">{cap.icon}</div>
+                <div className="capabilities__body">
+                  <span className="capabilities__name">{cap.name}</span>
+                  <span className="capabilities__badge">
+                    {cap.level === 'extreme' ? 'Core' : 'High'}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

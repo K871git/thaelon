@@ -5,7 +5,7 @@ export default function Hero() {
         <div className="hero__content">
           <div className="hero__badge">
             <span className="hero__badge-dot" aria-hidden="true" />
-            Ghost-Team
+            Taking on projects
           </div>
 
           <h1 className="hero__title">THAELON</h1>
@@ -18,7 +18,7 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a href="#projects" className="btn btn-primary">View Our Work</a>
+            <a href="#products" className="btn btn-primary">View Our Work</a>
             <a href="#about" className="btn btn-secondary">Learn More</a>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function Hero() {
               <span className="hero__terminal-ln hero__terminal-ln--in">
                 <span className="tc-prop">status</span>
                 <span className="tc-op">: </span>
-                <span className="tc-str">"deploying"</span>
+                <span className="tc-str">"shipping"</span>
                 <span className="tc-cursor" />
               </span>
               <span className="hero__terminal-ln">

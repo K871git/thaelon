@@ -7,17 +7,19 @@ import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
 import Process from './sections/Process'
-import Projects from './sections/Projects'
+import ProductListing from './sections/ProductListing'
+import Team from './sections/Team'
+// import Testimonials from './sections/Testimonials'
 import Pricing from './sections/Pricing'
 import Contact from './sections/Contact'
 import useScrollReveal from './hooks/useScrollReveal'
-// import Team from './sections/Team'
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
     try {
       const stored = localStorage.getItem('thaelon-theme')
-      return stored === 'light' || stored === 'dark' ? stored : 'dark'
+      if (stored === 'light' || stored === 'dark') return stored
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     } catch { return 'dark' }
   })
 
@@ -40,7 +42,9 @@ export default function App() {
         <About />
         <Skills />
         <Process />
-        <Projects />
+        <ProductListing />
+        <Team />
+        {/* <Testimonials /> */}
         <Pricing />
         <Contact />
       </main>

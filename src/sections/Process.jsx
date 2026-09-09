@@ -91,6 +91,7 @@ const steps = [
 
 export default function Process() {
   const [modal, setModal] = useState(null)
+  const [hovered, setHovered] = useState(null)
   const close = useCallback(() => setModal(null), [])
 
   return (
@@ -99,9 +100,25 @@ export default function Process() {
         <span className="section-label reveal">How We Work</span>
         <h2 className="section-heading reveal" id="process-heading">From idea to impact</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          Every piece of software we build follows a clear, disciplined process —
-          from the first conversation to the final deployment.
+          Most projects don't fail at the code level — they fail before a line of code
+          is written. Our five-phase process closes every gap: planning, architecture,
+          build, launch, and what happens after. Click any phase to see exactly what
+          we do and what you get.
         </p>
+
+        {/* Visual timeline connector — hidden on mobile */}
+        <div className="process__timeline reveal" style={{ '--reveal-delay': '0.08s' }} aria-hidden="true">
+          {steps.map(step => (
+            <div key={step.number} className="process__tl-step">
+              <div className={`process__tl-node process__tl-node--${step.color}${hovered === step.number ? ' process__tl-node--active' : ''}`}>
+                {step.number}
+              </div>
+              <span className={`process__tl-label${hovered === step.number ? ' process__tl-label--active' : ''}`}>
+                {step.title}
+              </span>
+            </div>
+          ))}
+        </div>
 
         <div className="process__grid">
           {steps.map((step, i) => (
@@ -116,6 +133,8 @@ export default function Process() {
               aria-label={`View ${step.title} phase details`}
               onClick={() => setModal(step)}
               onKeyDown={e => e.key === 'Enter' && setModal(step)}
+              onMouseEnter={() => setHovered(step.number)}
+              onMouseLeave={() => setHovered(null)}
             >
               <span className="process__number">{step.number}</span>
               <h3>{step.title}</h3>
