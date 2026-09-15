@@ -2538,6 +2538,277 @@ main { animation: siteEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both; }
   }
 }
 
+/* ===== PLATFORM BADGES (products) ===== */
+.products__platform-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 10px 0 0;
+}
+
+.products__platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: rgba(148,163,184,.1);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .products__platform-badge {
+  background: rgba(255,255,255,.05);
+}
+
+.products__platform-badge svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Inside modal — slightly larger */
+.product-detail__header .products__platform-badges {
+  margin-top: 12px;
+}
+
+.product-detail__header .products__platform-badge {
+  font-size: 12px;
+  padding: 5px 12px;
+}
+
+/* Multiple action buttons in footer */
+.product-detail__footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.project-modal__action-btn--secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .project-modal__action-btn--secondary {
+  background: rgba(255,255,255,.04);
+}
+
+.project-modal__action-btn--secondary:hover {
+  border-color: var(--color-accent-border);
+  color: var(--color-accent-light);
+}
+
+/* ===== CONTACT FORM ===== */
+.contact__form-wrap {
+  margin-top: 64px;
+}
+
+.contact__form-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  color: var(--color-muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact__form-divider::before,
+.contact__form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 560px) {
+  .contact__form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.contact__form-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-muted);
+  letter-spacing: 0.03em;
+}
+
+.contact__form-field input,
+.contact__form-field select,
+.contact__form-field textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+[data-theme="dark"] .contact__form-field input,
+[data-theme="dark"] .contact__form-field select,
+[data-theme="dark"] .contact__form-field textarea {
+  background: rgba(255,255,255,.04);
+}
+
+[data-theme="light"] .contact__form-field input,
+[data-theme="light"] .contact__form-field select,
+[data-theme="light"] .contact__form-field textarea {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+
+.contact__form-field input::placeholder,
+.contact__form-field textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+
+.contact__form-field input:focus,
+.contact__form-field select:focus,
+.contact__form-field textarea:focus {
+  border-color: var(--color-accent-border);
+  box-shadow: 0 0 0 3px rgba(124,106,247,.12);
+}
+
+.contact__form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.contact__form-field select option {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.contact__form-field textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.contact__form-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  align-self: flex-start;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.contact__form-submit:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.contact__form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contact__form-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.contact__form-error {
+  font-size: 13px;
+  color: #f87171;
+  margin: 0;
+}
+
+.contact__form-error a {
+  color: #f87171;
+  text-decoration: underline;
+}
+
+.contact__form-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(16,185,129,.25);
+  background: rgba(16,185,129,.07);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.contact__form-success svg {
+  width: 24px;
+  height: 24px;
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact__form-success strong {
+  display: block;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.contact__form-success p {
+  font-size: 13.5px;
+  color: var(--color-muted);
+  margin: 0;
+}
+
 /* ===== FOOTER ===== */
 .footer {
   border-top: 1px solid var(--color-border);

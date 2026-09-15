@@ -1,6 +1,11 @@
+import { useState } from 'react'
+
 const EMAIL = 'gangardekishor87@gmail.com'
 const GITHUB = 'https://github.com/K871git'
 const PHONE = '+91-7499621927'
+
+// ← Replace with your Web3Forms access key from web3forms.com
+const WEB3FORMS_KEY = '32ac9a3e-02e5-4404-a0b3-c79fa1515de7'
 
 const CARDS = [
   {
@@ -43,7 +48,45 @@ const CARDS = [
   },
 ]
 
+const BUDGET_OPTIONS = [
+  { value: '', label: 'Budget range (optional)' },
+  { value: 'Under ₹50,000', label: 'Under ₹50,000' },
+  { value: '₹50,000 – ₹2,00,000', label: '₹50,000 – ₹2,00,000' },
+  { value: '₹2,00,000 – ₹5,00,000', label: '₹2,00,000 – ₹5,00,000' },
+  { value: 'Above ₹5,00,000', label: 'Above ₹5,00,000' },
+  { value: 'Custom / Discuss', label: 'Custom / Let\'s discuss' },
+]
+
 export default function Contact() {
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setStatus('sending')
+
+    const formData = new FormData(e.target)
+    formData.append('access_key', WEB3FORMS_KEY)
+    formData.append('subject', 'New project inquiry — Thaelon.com')
+    formData.append('from_name', 'Thaelon Website')
+    formData.append('botcheck', '')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        e.target.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
     <section className="section" id="contact" aria-labelledby="contact-heading">
       <div className="container">
@@ -51,7 +94,8 @@ export default function Contact() {
           <span className="section-label">Contact</span>
           <h2 className="section-heading" id="contact-heading">Get a free estimate</h2>
           <p className="contact__desc">
-            No forms, no fluff. Pick how you want to reach us and we'll get back to you.
+            No fluff. Tell us what you need and we'll scope it, price it fairly, and be
+            honest about what's possible.
           </p>
         </div>
 
@@ -76,6 +120,121 @@ export default function Contact() {
             </a>
           ))}
         </div>
+
+        {/* ── Contact Form ── */}
+        <div className="contact__form-wrap reveal" style={{ '--reveal-delay': '0.12s' }}>
+          <div className="contact__form-divider">
+            <span>or send a message directly</span>
+          </div>
+
+          {status === 'success' ? (
+            <div className="contact__form-success">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <div>
+                <strong>Message sent</strong>
+                <p>We'll get back to you within 24 hours.</p>
+              </div>
+            </div>
+          ) : (
+            <form className="contact__form" onSubmit={handleSubmit} noValidate>
+              <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
+
+              <div className="contact__form-row">
+                <div className="contact__form-field">
+                  <label htmlFor="cf-name">Name</label>
+                  <input
+                    id="cf-name"
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    autoComplete="name"
+                  />
+                </div>
+                <div className="contact__form-field">
+                  <label htmlFor="cf-email">Email</label>
+                  <input
+                    id="cf-email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
+
+              <div className="contact__form-field">
+                <label htmlFor="cf-project">What are you building?</label>
+                <input
+                  id="cf-project"
+                  type="text"
+                  name="project"
+                  placeholder="e.g. A booking system for my clinic, an AI integration for my product..."
+                  required
+                />
+              </div>
+
+              <div className="contact__form-row">
+                <div className="contact__form-field">
+                  <label htmlFor="cf-budget">Budget range</label>
+                  <select id="cf-budget" name="budget">
+                    {BUDGET_OPTIONS.map(o => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="contact__form-field">
+                  <label htmlFor="cf-timeline">Timeline</label>
+                  <select id="cf-timeline" name="timeline">
+                    <option value="">Timeline (optional)</option>
+                    <option value="ASAP">As soon as possible</option>
+                    <option value="1 month">Within 1 month</option>
+                    <option value="1–3 months">1–3 months</option>
+                    <option value="3+ months">3+ months</option>
+                    <option value="Flexible">Flexible</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="contact__form-field">
+                <label htmlFor="cf-message">Tell us more</label>
+                <textarea
+                  id="cf-message"
+                  name="message"
+                  rows={4}
+                  placeholder="Any extra context — tech requirements, must-haves, questions, or just a description of the problem you're solving..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="contact__form-submit"
+                disabled={status === 'sending'}
+              >
+                {status === 'sending' ? (
+                  <>
+                    <span className="contact__form-spinner" aria-hidden="true" />
+                    Sending…
+                  </>
+                ) : (
+                  'Send message →'
+                )}
+              </button>
+
+              {status === 'error' && (
+                <p className="contact__form-error">
+                  Something went wrong. Email us directly at{' '}
+                  <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+                </p>
+              )}
+            </form>
+          )}
+        </div>
+
       </div>
     </section>
   )

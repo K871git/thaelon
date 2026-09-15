@@ -18,17 +18,26 @@ const PRODUCT_ICONS = {
 }
 
 const TYPE_META = {
-  saas: { label: 'SaaS', desc: 'Cloud · Subscription · Always up to date' },
-  'on-premise': { label: 'On-Premise', desc: 'Install locally · You own the data · One-time setup' },
+  saas:         { label: 'SaaS',        desc: 'Cloud · Subscription · Always up to date' },
+  'on-premise': { label: 'On-Premise',  desc: 'Self-hosted · Data stays local · No cloud' },
 }
 
-const PlayIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
-    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" />
-    <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />
-  </svg>
-)
+const PLATFORM_ICONS = {
+  Web: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="2" y1="12" x2="22" y2="12" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  ),
+  Desktop: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  ),
+}
 
 const DocIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
@@ -65,18 +74,16 @@ const ArrowIcon = () => (
   </svg>
 )
 
-function VideoSlot({ src, productName }) {
-  if (src) {
-    return (
-      <video className="products__video-player" src={src}
-        controls muted playsInline preload="metadata"
-        aria-label={`${productName} demo video`} />
-    )
-  }
+function PlatformBadges({ platforms }) {
+  if (!platforms?.length) return null
   return (
-    <div className="products__video-placeholder">
-      <div className="products__video-placeholder-icon"><PlayIcon /></div>
-      <span>Demo video coming soon</span>
+    <div className="products__platform-badges">
+      {platforms.map(p => (
+        <span key={p} className="products__platform-badge">
+          {PLATFORM_ICONS[p]}
+          {p}
+        </span>
+      ))}
     </div>
   )
 }
@@ -124,6 +131,8 @@ export default function ProductListing() {
                   <span className={`projects__status projects__status--${p.status}`}>{p.status}</span>
                 </div>
 
+                <PlatformBadges platforms={p.platforms} />
+
                 <h3 className="products__name">{p.name}</h3>
                 <p className="products__tagline">{p.tagline}</p>
 
@@ -145,7 +154,7 @@ export default function ProductListing() {
         </div>
       </div>
 
-      {/* ── DETAIL MODAL — all the real content lives here ── */}
+      {/* ── DETAIL MODAL ── */}
       <Modal isOpen={!!modal} onClose={close} title={modal?.name} className="modal--product-detail">
         {modal && (() => {
           const meta = TYPE_META[modal.type]
@@ -156,25 +165,19 @@ export default function ProductListing() {
               <div className="product-detail__header">
                 <div className="product-detail__header-top">
                   <span className="products__type-badge">{meta.label}</span>
-                  <span className="products__type-platform">{meta.desc}</span>
                   <span className={`projects__status projects__status--${modal.status}`}>{modal.status}</span>
                 </div>
                 <h2 className="product-detail__name">{modal.name}</h2>
                 <p className="product-detail__tagline">{modal.tagline}</p>
-              </div>
-
-              {/* Demo video */}
-              <div className="product-detail__section">
-                <h4 className="product-detail__section-title"><PlayIcon /> Demo</h4>
-                <div className="product-detail__video-wrap">
-                  <VideoSlot src={modal.demo} productName={modal.name} />
-                </div>
+                <PlatformBadges platforms={modal.platforms} />
               </div>
 
               {/* Overview */}
               <div className="product-detail__section">
                 <h4 className="product-detail__section-title"><DocIcon /> Overview</h4>
-                <p className="product-detail__desc">{modal.description}</p>
+                {modal.description.split('\n\n').map((para, i) => (
+                  <p key={i} className="product-detail__desc">{para}</p>
+                ))}
               </div>
 
               {/* Features */}
@@ -186,75 +189,34 @@ export default function ProductListing() {
               </div>
 
               {/* Resources */}
-              <div className="product-detail__section">
-                <h4 className="product-detail__section-title">Resources</h4>
-                <div className="product-detail__resources">
-                  {modal.type === 'saas' && (
-                    modal.docs ? (
+              {(modal.docs || modal.datasheet) && (
+                <div className="product-detail__section">
+                  <h4 className="product-detail__section-title">Resources</h4>
+                  <div className="product-detail__resources">
+                    {modal.docs && (
                       <a href={modal.docs} target="_blank" rel="noopener noreferrer"
                         className="product-detail__resource">
                         <DocIcon />
                         <div>
                           <strong>Documentation</strong>
-                          <span>Setup guides, API reference, usage</span>
+                          <span>Setup guides, API reference, usage manual</span>
                         </div>
                         <ExternalIcon />
                       </a>
-                    ) : (
-                      <div className="product-detail__resource product-detail__resource--soon">
-                        <DocIcon />
-                        <div>
-                          <strong>Documentation</strong>
-                          {/* ← FILL: set docs URL in products.js */}
-                          <span>Coming soon — setup guides and API reference</span>
-                        </div>
-                      </div>
-                    )
-                  )}
-
-                  {modal.type === 'on-premise' && (<>
-                    {modal.docs ? (
-                      <a href={modal.docs} download className="product-detail__resource">
-                        <DocIcon />
-                        <div>
-                          <strong>Setup Guide</strong>
-                          <span>Installation, configuration, and usage manual</span>
-                        </div>
-                        <DownloadIcon />
-                      </a>
-                    ) : (
-                      <div className="product-detail__resource product-detail__resource--soon">
-                        <DocIcon />
-                        <div>
-                          <strong>Setup Guide</strong>
-                          {/* ← FILL: set docs path in products.js */}
-                          <span>Coming soon — installation and configuration manual</span>
-                        </div>
-                      </div>
                     )}
-
-                    {modal.datasheet ? (
+                    {modal.datasheet && (
                       <a href={modal.datasheet} download className="product-detail__resource">
                         <DownloadIcon />
                         <div>
                           <strong>Datasheet</strong>
-                          <span>Technical specs, requirements, and pricing overview</span>
+                          <span>Technical specs, requirements, and feature overview</span>
                         </div>
                         <DownloadIcon />
                       </a>
-                    ) : (
-                      <div className="product-detail__resource product-detail__resource--soon">
-                        <DownloadIcon />
-                        <div>
-                          <strong>Datasheet</strong>
-                          {/* ← FILL: set datasheet path in products.js */}
-                          <span>Coming soon — technical specs and pricing overview</span>
-                        </div>
-                      </div>
                     )}
-                  </>)}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Tech stack */}
               <div className="product-detail__section">
@@ -264,15 +226,22 @@ export default function ProductListing() {
                 </ul>
               </div>
 
-              {/* Primary action */}
+              {/* Primary actions */}
               <div className="product-detail__footer">
-                {modal.link ? (
+                {modal.link && (
                   <a href={modal.link} target="_blank" rel="noopener noreferrer"
                     className="project-modal__action-btn">
                     <ExternalIcon />
-                    {modal.type === 'saas' ? `Try ${modal.name} free` : 'Visit live site'}
+                    {modal.type === 'saas' ? `Try ${modal.name}` : 'Open Web App'}
                   </a>
-                ) : (
+                )}
+                {modal.download && (
+                  <a href={modal.download} className="project-modal__action-btn project-modal__action-btn--secondary">
+                    <DownloadIcon />
+                    Download Desktop App
+                  </a>
+                )}
+                {!modal.link && !modal.download && (
                   <a href="#contact" onClick={close} className="project-modal__action-btn">
                     Contact us about {modal.name} →
                   </a>
