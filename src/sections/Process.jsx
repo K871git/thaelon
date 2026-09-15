@@ -142,6 +142,17 @@ export default function Process() {
               <ul className="process__step-acts">
                 {step.activities.slice(0, 4).map(a => <li key={a}>{a}</li>)}
               </ul>
+
+              {step.deliverables?.[0] && (
+                <div className="process__step-deliver">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="9 11 12 14 22 4" />
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                  </svg>
+                  {step.deliverables[0]}
+                </div>
+              )}
+
               <span className="process__step-cta" aria-hidden="true">See what's included →</span>
             </div>
           ))}

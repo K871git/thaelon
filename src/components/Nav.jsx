@@ -112,6 +112,10 @@ export default function Nav({ theme, onToggleTheme }) {
         </nav>
 
         <div className="nav__right">
+          <a href="#contact" className="nav__cta" aria-label="Get a free estimate">
+            Get in touch
+          </a>
+
           <button
             className="nav__theme-btn"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}

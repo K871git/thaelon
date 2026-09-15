@@ -1,6 +1,11 @@
 export default function Hero() {
   return (
     <section className="hero" aria-label="Introduction">
+      {/* ambient orb blobs */}
+      <div className="hero__orb hero__orb--1" aria-hidden="true" />
+      <div className="hero__orb hero__orb--2" aria-hidden="true" />
+      <div className="hero__orb hero__orb--3" aria-hidden="true" />
+
       <div className="container hero__inner">
         <div className="hero__content">
           <div className="hero__badge">
@@ -19,7 +24,24 @@ export default function Hero() {
 
           <div className="hero__actions">
             <a href="#products" className="btn btn-primary">View Our Work</a>
-            <a href="#about" className="btn btn-secondary">Learn More</a>
+            <a href="#contact" className="btn btn-secondary">Get a free estimate</a>
+          </div>
+
+          <div className="hero__stats" aria-label="Quick stats">
+            <div className="hero__stat">
+              <span className="hero__stat-num">2</span>
+              <span className="hero__stat-label">Live products</span>
+            </div>
+            <div className="hero__stat-divider" aria-hidden="true" />
+            <div className="hero__stat">
+              <span className="hero__stat-num">5</span>
+              <span className="hero__stat-label">Phase process</span>
+            </div>
+            <div className="hero__stat-divider" aria-hidden="true" />
+            <div className="hero__stat">
+              <span className="hero__stat-num">8</span>
+              <span className="hero__stat-label">Core capabilities</span>
+            </div>
           </div>
         </div>
 
