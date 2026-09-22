@@ -48,7 +48,7 @@ const products = [
     audience: ['Clinic Owners', 'General Practitioners', 'Medical Staff', 'Pharmacists'],
     tech: ['React', 'Vite', 'Laravel 13', 'MySQL', 'Tauri 2 (Rust)', 'Sanctum Auth', 'PDF Generation'],
     link: null,
-    download: 'https://github.com/K871git/thaelon-products/releases/download/v1.0.0/Clinora_1.0.0_x64-setup.exe',
+    download: 'https://github.com/K871git/thaelon-products/releases/download/v1.2.0/Clinora_1.2.0_x64-setup.exe',
     docs: null,
     datasheet: null,
   },
