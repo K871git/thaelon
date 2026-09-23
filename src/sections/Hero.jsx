@@ -35,7 +35,7 @@ export default function Hero() {
             <div className="hero__stat-divider" aria-hidden="true" />
             <div className="hero__stat">
               <span className="hero__stat-num">5</span>
-              <span className="hero__stat-label">Phase process</span>
+              <span className="hero__stat-label">Phases</span>
             </div>
             <div className="hero__stat-divider" aria-hidden="true" />
             <div className="hero__stat">

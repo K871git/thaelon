@@ -2,18 +2,41 @@ const PILLARS = [
   {
     title: 'Requirement-Based',
     desc: 'We scope every project to what you actually need. No bloated packages, no unnecessary features forced into your budget.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+      </svg>
+    ),
   },
   {
     title: 'Highly Affordable',
     desc: 'Competitive rates designed for startups, growing teams, and independent builders — quality without the enterprise price tag.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+        <line x1="7" y1="7" x2="7.01" y2="7"/>
+      </svg>
+    ),
   },
   {
     title: 'Fully Transparent',
     desc: "Clear cost breakdown before we start. You know exactly what you're paying for — no hidden fees, no scope surprises.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
   },
   {
     title: 'Flexible Scope',
     desc: "From a single feature to a full product — we adapt to your timeline and budget, not the other way around.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+        <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+      </svg>
+    ),
   },
 ]
 
@@ -72,8 +95,9 @@ export default function Pricing() {
               key={p.title}
               style={{ '--reveal-delay': `${i * 0.08}s` }}
             >
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
+              <div className="pricing__card-icon" aria-hidden="true">{p.icon}</div>
+              <h3 className="pricing__card-title">{p.title}</h3>
+              <p className="pricing__card-desc">{p.desc}</p>
             </div>
           ))}
         </div>

@@ -738,12 +738,11 @@ export default function Starfield({ theme }) {
       sky.addColorStop(1,    'rgba(190,224,255,0.05)')
       ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H)
 
-      // Horizon warmth — subtle peach/amber band
-      const horiz = ctx.createLinearGradient(0, H * 0.52, 0, H * 0.80)
-      horiz.addColorStop(0,    'transparent')
-      horiz.addColorStop(0.35, 'rgba(255,195,108,0.14)')
-      horiz.addColorStop(0.70, 'rgba(255,165,75,0.09)')
-      horiz.addColorStop(1,    'transparent')
+      // Horizon warmth — only at the very bottom of viewport (footer area)
+      const horiz = ctx.createLinearGradient(0, H * 0.82, 0, H)
+      horiz.addColorStop(0,   'transparent')
+      horiz.addColorStop(0.5, 'rgba(255,210,140,0.07)')
+      horiz.addColorStop(1,   'transparent')
       ctx.fillStyle = horiz; ctx.fillRect(0, 0, W, H)
 
       ctx.restore()

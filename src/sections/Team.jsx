@@ -33,36 +33,69 @@ export default function Team() {
         <span className="section-label reveal">Who builds Thaelon</span>
         <h2 className="section-heading reveal" id="team-heading">Founder-led, craft-driven</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          Thaelon is founded and led by a single engineer who designs, builds, and ships
-          every product — with a trusted network of specialists brought in for scope that needs it.
+          A single engineer who designs, builds, and ships — with a trusted network
+          of specialists brought in for scope that needs it.
         </p>
 
         <div className="team__collective reveal" style={{ '--reveal-delay': '0.1s' }}>
           <button
-            className="team__collective-card"
+            className="team__founder-card"
             onClick={() => setOpen(true)}
             aria-label="Meet Kishor Gangarde, founder of Thaelon"
           >
-            <div className="team__avatar-cluster" aria-hidden="true">
-              {team.map(m => (
-                <div key={m.name} className="team__cluster-avatar">{m.initials}</div>
-              ))}
-              <div className="team__cluster-avatar team__cluster-avatar--more">+</div>
-            </div>
-            <div className="team__collective-meta">
-              <h3 className="team__collective-name">Kishor Gangarde</h3>
-              <p className="team__collective-role">Founder &amp; Lead Engineer</p>
-              <p className="team__collective-desc">
-                Architect and builder of Clinora and KareerOS. Takes on client work across
-                AI systems, full-stack applications, and domain-specific software — from
-                first brief to production deployment.
-              </p>
-              <div className="team__focus-tags">
-                {FOCUS_AREAS.map(f => (
-                  <span key={f} className="team__focus-tag">{f}</span>
-                ))}
+            {/* decorative glow blobs */}
+            <div className="team__founder-glow team__founder-glow--1" aria-hidden="true" />
+            <div className="team__founder-glow team__founder-glow--2" aria-hidden="true" />
+
+            {/* LEFT: identity */}
+            <div className="team__founder-identity">
+              <div className="team__founder-avatar-wrap" aria-hidden="true">
+                <div className="team__founder-avatar">KG</div>
+                <div className="team__founder-badge" title="Specialist network">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
               </div>
-              <span className="team__collective-cta">View profile →</span>
+              <h3 className="team__founder-name">Kishor Gangarde</h3>
+              <p className="team__founder-role">Founder &amp; Lead Engineer</p>
+              <div className="team__founder-status">
+                <span className="team__founder-status-dot" aria-hidden="true" />
+                Available for projects
+              </div>
+            </div>
+
+            {/* vertical divider */}
+            <div className="team__founder-divider" aria-hidden="true" />
+
+            {/* RIGHT: detail */}
+            <div className="team__founder-detail">
+              <p className="team__founder-bio">
+                Architect and builder of Clinora and KareerOS. Takes on client work across
+                AI systems, full-stack applications, and domain-specific software —
+                from first brief to production deployment.
+              </p>
+
+              <div className="team__founder-focus">
+                <span className="team__founder-focus-label">Focus areas</span>
+                <div className="team__focus-tags">
+                  {FOCUS_AREAS.map(f => (
+                    <span key={f} className="team__focus-tag">{f}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="team__founder-footer">
+                <div className="team__founder-ships">
+                  <span className="team__founder-ships-label">Ships</span>
+                  <span className="team__founder-ship">Clinora</span>
+                  <span className="team__founder-ship-dot" aria-hidden="true">·</span>
+                  <span className="team__founder-ship">KareerOS</span>
+                </div>
+                <span className="team__collective-cta">View profile →</span>
+              </div>
             </div>
           </button>
         </div>
@@ -71,44 +104,53 @@ export default function Team() {
       <Modal isOpen={open} onClose={close} title="Kishor Gangarde">
         <div className="team-modal__members">
           {team.map(m => (
-            <div key={m.name} className="team-modal__member">
-              <div className="team-modal__member-avatar">{m.initials}</div>
-              <div className="team-modal__member-info">
-                <div className="team-modal__member-top">
-                  <div>
-                    <h3 className="team-modal__member-name">{m.name}</h3>
-                    <p className="team-modal__member-role">{m.role}</p>
-                  </div>
-                  <div className="team-modal__member-links">
-                    {m.github && (
-                      <a href={m.github} target="_blank" rel="noopener noreferrer"
-                        className="team-modal__member-link" aria-label={`${m.name} on GitHub`}>
-                        <GitHubIcon />
-                      </a>
-                    )}
-                    {m.linkedin && (
-                      <a href={m.linkedin} target="_blank" rel="noopener noreferrer"
-                        className="team-modal__member-link" aria-label={`${m.name} on LinkedIn`}>
-                        <LinkedInIcon />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <p className="team-modal__member-bio">{m.bio}</p>
+            <div key={m.name} className="team-modal__profile">
+              {/* gradient header band */}
+              <div className="team-modal__profile-band" aria-hidden="true" />
 
-                <div className="team-modal__products">
-                  <p className="team-modal__products-label">Ships</p>
-                  <div className="team-modal__products-list">
-                    <span>Clinora — clinic management desktop app</span>
-                    <span>KareerOS — AI-powered interview prep platform</span>
-                  </div>
+              {/* avatar + identity */}
+              <div className="team-modal__profile-center">
+                <div className="team-modal__profile-avatar" aria-hidden="true">{m.initials}</div>
+                <h3 className="team-modal__profile-name">{m.name}</h3>
+                <p className="team-modal__profile-role">{m.role}</p>
+                <div className="team-modal__profile-links">
+                  {m.github && (
+                    <a href={m.github} target="_blank" rel="noopener noreferrer"
+                      className="team-modal__profile-link" aria-label={`${m.name} on GitHub`}>
+                      <GitHubIcon />
+                    </a>
+                  )}
+                  {m.linkedin && (
+                    <a href={m.linkedin} target="_blank" rel="noopener noreferrer"
+                      className="team-modal__profile-link" aria-label={`${m.name} on LinkedIn`}>
+                      <LinkedInIcon />
+                    </a>
+                  )}
                 </div>
+              </div>
+
+              {/* bio */}
+              <p className="team-modal__profile-bio">{m.bio}</p>
+
+              {/* ships */}
+              <div className="team-modal__profile-ships">
+                <p className="team-modal__profile-ships-label">Ships</p>
+                <ul className="team-modal__profile-ships-list">
+                  <li>Clinora — clinic management desktop app</li>
+                  <li>KareerOS — AI-powered interview prep platform</li>
+                </ul>
               </div>
             </div>
           ))}
 
           <div className="team-modal__growing">
-            <div className="team-modal__growing-icon">+</div>
+            <div className="team-modal__growing-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
             <div>
               <strong>Working with specialists</strong>
               <p>
