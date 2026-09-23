@@ -123,31 +123,40 @@ export default function ProductListing() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
 
-                {/* Icon */}
-                {PRODUCT_ICONS[p.name] && (
-                  <div className="products__icon-area">{PRODUCT_ICONS[p.name]}</div>
-                )}
-
-                {/* Badges row */}
-                <div className="products__item-badges">
-                  <span className="products__type-badge">{meta.label}</span>
-                  <StatusBadge status={p.status} />
+                {/* Card head: icon + name + badges side by side */}
+                <div className="products__card-head">
+                  {PRODUCT_ICONS[p.name] && (
+                    <div className="products__icon-area">{PRODUCT_ICONS[p.name]}</div>
+                  )}
+                  <div className="products__card-identity">
+                    <h3 className="products__name">{p.name}</h3>
+                    <div className="products__item-badges">
+                      <span className="products__type-badge">{meta.label}</span>
+                      <StatusBadge status={p.status} />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Platform chips */}
                 <PlatformBadges platforms={p.platforms} />
 
-                <h3 className="products__name">{p.name}</h3>
+                {/* Description */}
                 <p className="products__tagline">{p.tagline}</p>
 
-                <ul className="products__tech-strip">
-                  {p.tech.slice(0, 3).map(t => <li key={t}>{t}</li>)}
-                  {p.tech.length > 3 && (
-                    <li className="products__tech-more">+{p.tech.length - 3}</li>
-                  )}
-                </ul>
+                {/* 2 key feature highlights */}
+                {p.features?.length > 0 && (
+                  <ul className="products__features">
+                    {p.features.slice(0, 2).map(f => <li key={f}>{f}</li>)}
+                  </ul>
+                )}
 
+                {/* Footer: stats left + explore right */}
                 <div className="products__item-footer">
+                  {p.stats?.length > 0 && (
+                    <ul className="products__stats-strip">
+                      {p.stats.map(s => <li key={s}>{s}</li>)}
+                    </ul>
+                  )}
                   <span className="products__explore-cta">
                     Explore <ArrowIcon />
                   </span>

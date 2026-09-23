@@ -20,8 +20,9 @@ const PILLARS = [
 const TIERS = [
   {
     label: 'Single Feature',
-    desc: 'One isolated feature, API integration, or sprint-sized bug fix.',
+    desc: 'One isolated feature, API integration, or sprint-sized fix.',
     duration: '1 day to 1 week',
+    from: '₹2,500',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -32,6 +33,7 @@ const TIERS = [
     label: 'Full Module',
     desc: 'Complete feature set — backend, frontend, tests, and documentation.',
     duration: '2 to 4 weeks',
+    from: '₹12,000',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
@@ -43,6 +45,7 @@ const TIERS = [
     label: 'Full Product',
     desc: 'Discovery through launch — architecture, build, testing, deployment.',
     duration: '1 to 2 months',
+    from: '₹40,000',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -85,7 +88,12 @@ export default function Pricing() {
                 <div className="pricing__tier-body">
                   <strong className="pricing__tier-label">{t.label}</strong>
                   <p className="pricing__tier-desc">{t.desc}</p>
-                  <span className="pricing__tier-duration">{t.duration}</span>
+                  <div className="pricing__tier-meta">
+                    <span className="pricing__tier-duration">{t.duration}</span>
+                    {t.from && (
+                      <span className="pricing__tier-from">From {t.from}</span>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}

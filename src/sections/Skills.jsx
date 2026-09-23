@@ -180,9 +180,9 @@ export default function Skills() {
     <section className="section" id="skills" aria-labelledby="skills-heading">
       <div className="container">
         <span className="section-label reveal">Capabilities</span>
-        <h2 className="section-heading reveal" id="skills-heading">What we build with</h2>
+        <h2 className="section-heading reveal" id="skills-heading">The full stack, owned end to end</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          We focus on what we can actually deliver — not just what we know.
+          Eight layers of engineering depth. Click any category to see what's inside.
         </p>
 
         <div className="skills__specializations reveal" style={{ '--reveal-delay': '0.1s' }}>
@@ -225,14 +225,12 @@ export default function Skills() {
         {/* Next-gen engineering capabilities */}
         <div className="capabilities">
           <div className="capabilities__intro reveal" style={{ '--reveal-delay': '0.05s' }}>
-            <span className="capabilities__eyebrow">Next-Gen Engineering</span>
-            <h3 className="capabilities__heading">Built for the AI era</h3>
+            <span className="capabilities__eyebrow">Core Competencies</span>
+            <h3 className="capabilities__heading">No weak layers</h3>
             <p className="capabilities__sub">
-              Most engineering teams are deep in one layer and shallow everywhere else. That
-              worked before. AI-era products break at the seams — between model and API,
-              API and frontend, code and cloud, logic and business decision. Thaelon was
-              built to be the team that goes deep across all eight, so the product holds
-              together end to end — not just the part one person owns.
+              AI-era products fail at the seams — where the model meets the API, where
+              the API meets the frontend, where code meets the cloud. Thaelon goes deep
+              across all eight layers so nothing breaks at handoff.
             </p>
           </div>
           <div className="capabilities__grid">

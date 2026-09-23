@@ -14,6 +14,15 @@ const LinkedInIcon = () => (
   </svg>
 )
 
+const FOCUS_AREAS = [
+  'Full-Stack Architecture',
+  'AI & LLM Systems',
+  'Desktop App Engineering',
+  'Clinical & Domain Software',
+  'API Design',
+  'DevOps & Deployment',
+]
+
 export default function Team() {
   const [open, setOpen] = useState(false)
   const close = useCallback(() => setOpen(false), [])
@@ -21,17 +30,18 @@ export default function Team() {
   return (
     <section className="section" id="team" aria-labelledby="team-heading">
       <div className="container">
-        <span className="section-label reveal">Team</span>
-        <h2 className="section-heading reveal" id="team-heading">The people behind it</h2>
+        <span className="section-label reveal">Who builds Thaelon</span>
+        <h2 className="section-heading reveal" id="team-heading">Founder-led, craft-driven</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          A focused team of engineers who care deeply about craft, clarity, and what ships.
+          Thaelon is founded and led by a single engineer who designs, builds, and ships
+          every product — with a trusted network of specialists brought in for scope that needs it.
         </p>
 
         <div className="team__collective reveal" style={{ '--reveal-delay': '0.1s' }}>
           <button
             className="team__collective-card"
             onClick={() => setOpen(true)}
-            aria-label="Meet the Thaelon team"
+            aria-label="Meet Kishor Gangarde, founder of Thaelon"
           >
             <div className="team__avatar-cluster" aria-hidden="true">
               {team.map(m => (
@@ -40,19 +50,25 @@ export default function Team() {
               <div className="team__cluster-avatar team__cluster-avatar--more">+</div>
             </div>
             <div className="team__collective-meta">
-              <h3 className="team__collective-name">Ghost Team</h3>
+              <h3 className="team__collective-name">Kishor Gangarde</h3>
+              <p className="team__collective-role">Founder &amp; Lead Engineer</p>
               <p className="team__collective-desc">
-                A small, focused group of engineers shipping production software across AI,
-                full-stack, and domain-specific systems. No fluff. Just craft.
+                Architect and builder of Clinora and KareerOS. Takes on client work across
+                AI systems, full-stack applications, and domain-specific software — from
+                first brief to production deployment.
               </p>
-              <span className="team__collective-cta">Meet the team →</span>
+              <div className="team__focus-tags">
+                {FOCUS_AREAS.map(f => (
+                  <span key={f} className="team__focus-tag">{f}</span>
+                ))}
+              </div>
+              <span className="team__collective-cta">View profile →</span>
             </div>
           </button>
         </div>
       </div>
 
-      <Modal isOpen={open} onClose={close} title="Ghost Team">
-        <div className="team-modal__title">Ghost Team</div>
+      <Modal isOpen={open} onClose={close} title="Kishor Gangarde">
         <div className="team-modal__members">
           {team.map(m => (
             <div key={m.name} className="team-modal__member">
@@ -65,30 +81,28 @@ export default function Team() {
                   </div>
                   <div className="team-modal__member-links">
                     {m.github && (
-                      <a
-                        href={m.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="team-modal__member-link"
-                        aria-label={`${m.name} on GitHub`}
-                      >
+                      <a href={m.github} target="_blank" rel="noopener noreferrer"
+                        className="team-modal__member-link" aria-label={`${m.name} on GitHub`}>
                         <GitHubIcon />
                       </a>
                     )}
                     {m.linkedin && (
-                      <a
-                        href={m.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="team-modal__member-link"
-                        aria-label={`${m.name} on LinkedIn`}
-                      >
+                      <a href={m.linkedin} target="_blank" rel="noopener noreferrer"
+                        className="team-modal__member-link" aria-label={`${m.name} on LinkedIn`}>
                         <LinkedInIcon />
                       </a>
                     )}
                   </div>
                 </div>
                 <p className="team-modal__member-bio">{m.bio}</p>
+
+                <div className="team-modal__products">
+                  <p className="team-modal__products-label">Ships</p>
+                  <div className="team-modal__products-list">
+                    <span>Clinora — clinic management desktop app</span>
+                    <span>KareerOS — AI-powered interview prep platform</span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -96,10 +110,11 @@ export default function Team() {
           <div className="team-modal__growing">
             <div className="team-modal__growing-icon">+</div>
             <div>
-              <strong>We're growing</strong>
+              <strong>Working with specialists</strong>
               <p>
-                Building something real. If you care about craft and want to work on
-                hard problems, <a href="#contact" onClick={close}>reach out</a>.
+                For projects requiring additional expertise, Thaelon brings in vetted
+                engineers from its network. Every engagement is still founder-led and
+                directly accountable. <a href="#contact" onClick={close}>Start a conversation</a>.
               </p>
             </div>
           </div>
