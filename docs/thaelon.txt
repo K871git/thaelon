@@ -1,0 +1,645 @@
+================================================================================
+  THAELON — FULL PROJECT CONTEXT
+  For: Claude AI / Future Developer Reference
+  Project: https://github.com/K871git/thaelon (deployed at /thaelon/)
+  Owner: Kishor Gangarde (Founder & Lead Engineer)
+================================================================================
+
+
+────────────────────────────────────────────────────────────────────────────────
+1. WHAT THIS PROJECT IS
+────────────────────────────────────────────────────────────────────────────────
+
+Thaelon is the public-facing website / portfolio for a small software engineering
+studio. It is a single-page application (SPA) that presents:
+
+  - Who Thaelon is (about, values, founder profile)
+  - What they build (2 live products: Clinora, KareerOS)
+  - How they work (5-phase process)
+  - What they can build for clients (skills, capabilities)
+  - How much it costs (pricing pillars + scope tiers)
+  - How to contact them
+
+The site is branded as "next-gen" — the design language is glassmorphism +
+animated starfield background, very dark by default, premium typography.
+
+Tagline: "Imagine. Engineer. Evolve."
+
+
+────────────────────────────────────────────────────────────────────────────────
+2. TECH STACK
+────────────────────────────────────────────────────────────────────────────────
+
+  Runtime:        React 19.2.8
+  Build tool:     Vite 8.2.2
+  Language:       JavaScript (no TypeScript) + JSX
+  Linter:         oxlint
+  Testing:        Playwright (used for screenshot automation, not unit tests)
+  Deployment:     GitHub Pages
+  Base path:      /thaelon/  (set in vite.config.js: base: '/thaelon/')
+  Fonts:          Space Grotesk (headings/brand), system-ui fallback (body)
+  Styling:        Single global CSS file (src/index.css, ~5300+ lines)
+  No CSS modules, no Tailwind, no styled-components — pure vanilla CSS with
+  custom properties.
+
+
+────────────────────────────────────────────────────────────────────────────────
+3. DIRECTORY STRUCTURE
+────────────────────────────────────────────────────────────────────────────────
+
+  d:\new_live\thaelon\
+  ├── public\
+  │   └── Thaelon-removebg.png        ← logo image (PNG, transparent bg, dark)
+  ├── docs\
+  │   ├── context.md                  ← earlier context doc
+  │   └── thaelon.txt                 ← THIS FILE
+  ├── src\
+  │   ├── main.jsx                    ← React root, mounts App
+  │   ├── App.jsx                     ← Root component: theme state, layout order
+  │   ├── index.css                   ← ALL styles (~5300+ lines, single file)
+  │   ├── App.css                     ← Minimal resets only
+  │   │
+  │   ├── components\
+  │   │   ├── Starfield.jsx           ← Animated canvas background (fixed, z:0)
+  │   │   ├── Nav.jsx                 ← Top navigation with progress bar
+  │   │   ├── Footer.jsx              ← Footer with brand + social + links
+  │   │   ├── Modal.jsx               ← Reusable modal (portal, escape key, animation)
+  │   │   └── CodeTicker.jsx          ← Horizontal scrolling code terms strip
+  │   │
+  │   ├── sections\
+  │   │   ├── Hero.jsx                ← Landing: headline, stats, terminal widget
+  │   │   ├── About.jsx               ← Values/ethos section with cards
+  │   │   ├── Skills.jsx              ← Tech skills grouped by category
+  │   │   ├── Process.jsx             ← 5-phase workflow steps
+  │   │   ├── ProductListing.jsx      ← Thaelon's own products (Clinora, KareerOS)
+  │   │   ├── Team.jsx                ← Founder card + profile modal
+  │   │   ├── Pricing.jsx             ← Pricing pillars + scope tiers
+  │   │   ├── Contact.jsx             ← Contact form + info cards
+  │   │   ├── Future.jsx              ← (not in current render, reserved)
+  │   │   ├── Projects.jsx            ← (not in current render, reserved)
+  │   │   └── Testimonials.jsx        ← (commented out in App.jsx, reserved)
+  │   │
+  │   ├── data\
+  │   │   ├── team.js                 ← Array of team members (currently 1: KG)
+  │   │   ├── products.js             ← Clinora + KareerOS full product data
+  │   │   ├── projects.js             ← Client project data (for Projects section)
+  │   │   ├── skills.js               ← Skills data by category
+  │   │   └── skillIcons.jsx          ← SVG icon components for skills
+  │   │
+  │   └── hooks\
+  │       └── useScrollReveal.js      ← IntersectionObserver scroll animation hook
+  │
+  ├── package.json
+  └── vite.config.js                  ← base: '/thaelon/'
+
+
+────────────────────────────────────────────────────────────────────────────────
+4. APP ARCHITECTURE — HOW IT FITS TOGETHER
+────────────────────────────────────────────────────────────────────────────────
+
+App.jsx is the root. It holds:
+  - theme state ('dark' | 'light') — persisted to localStorage
+  - calls useScrollReveal() once to wire up IntersectionObserver
+  - passes theme to <Starfield> and toggleTheme to <Nav>
+  - renders in fixed layer order: Starfield → Nav → main sections → Footer
+
+The page render order (DOM top to bottom):
+  1. <Starfield>     fixed canvas behind everything, z-index: 0
+  2. <Nav>           sticky header, z-index: 50
+  3. <main>
+       - Hero
+       - CodeTicker   (horizontal scrolling dev terms strip, aria-hidden)
+       - About
+       - Skills
+       - Process
+       - ProductListing
+       - Team
+       - Pricing
+       - Contact
+  4. <Footer>
+
+Sections are NOT lazy-loaded. All mount at once. The scroll reveal hook
+applies enter animations as they scroll into viewport.
+
+
+────────────────────────────────────────────────────────────────────────────────
+5. THEME SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+
+Two themes: dark (default) and light.
+
+Theme is stored as:
+  - React state in App.jsx
+  - `data-theme` attribute on <html> (document.documentElement)
+  - localStorage key: 'thaelon-theme'
+  - Falls back to OS prefers-color-scheme on first visit
+
+All theme-specific CSS is written as:
+  [data-theme="dark"] .component { ... }
+  [data-theme="light"] .component { ... }
+
+Core CSS variables (defined in :root and [data-theme="dark"] / [data-theme="light"]):
+
+  Dark mode:
+    --color-bg:           #07070e
+    --color-surface:      #0c0d1a
+    --color-text:         #c9cbdb
+    --color-text-strong:  #ecedf5
+    --color-muted:        #8892a4
+    --color-accent:       #7c6af7  (violet/purple)
+    --color-accent-light: #a794f9
+    --color-accent-dim:   rgba(124, 106, 247, 0.10)
+    --color-accent-border: rgba(124, 106, 247, 0.30)
+    --modal-bg:           #0c0d1a
+
+  Light mode:
+    --color-bg:           #eef3ff
+    --color-surface:      #ffffff
+    --color-text:         #374151
+    --color-text-strong:  #111827
+    --color-accent:       #5d4de6  (slightly deeper purple)
+    --modal-bg:           #ffffff
+
+Category color tokens (used for product/skill cards via data-color attribute):
+  [data-color="violet"], [data-color="emerald"], [data-color="cyan"],
+  [data-color="amber"], [data-color="blue"], [data-color="rose"],
+  [data-color="purple"], [data-color="orange"]
+
+  Each provides: --cat, --cat-dim, --cat-border, --cat-glow
+  Used as: <div data-color="emerald"> → CSS reads var(--cat) etc.
+
+
+────────────────────────────────────────────────────────────────────────────────
+6. STARFIELD CANVAS — THE ANIMATED BACKGROUND
+────────────────────────────────────────────────────────────────────────────────
+
+File: src/components/Starfield.jsx
+
+The most complex component. It renders a full-screen <canvas> fixed behind
+all content (position: fixed; inset: 0; z-index: 0).
+
+It has a STATE MACHINE for theme transitions:
+  'enter-dark'   → initial dark load animation
+  'enter-light'  → initial light load animation
+  'dark'         → steady dark
+  'light'        → steady light
+  'to-light'     → transition animation dark→light
+  'to-dark'      → transition animation light→dark
+
+DARK MODE draws:
+  - ~400 stars (210 on mobile) with twinkle animations
+  - A moon (top-right area) with surface texture dots and a glow halo
+  - Shooting stars (random intervals, ~380–820 frames between)
+  - UFO (random, occasional, crosses the screen with beam)
+  - Spaceships (occasional, less frequent)
+  - Background star colors: white, cool blue-white, warm yellow-white, violet-white
+
+LIGHT MODE draws:
+  - Sky gradient: deep blue top → lighter horizon
+  - Sun (top-right area) with god rays radiating outward
+  - Animated clouds (slow drift left, wrap-around)
+  - Birds (V-shaped, flap animation, small groups)
+  - Horizon warmth gradient: ONLY in the bottom ~18% of canvas
+    (was previously bleeding into mid-sections — FIXED by pushing to H*0.82–1.0)
+
+IMPORTANT: The horizon gradient in drawSky() must remain at H*0.82–1.0.
+  If you move it higher, the warm peach/sand tone bleeds into sections
+  like Process and Products and looks terrible.
+
+Current horizon code:
+  const horiz = ctx.createLinearGradient(0, H * 0.82, 0, H)
+  horiz.addColorStop(0, 'transparent')
+  horiz.addColorStop(0.5, 'rgba(255,210,140,0.07)')
+  horiz.addColorStop(1, 'transparent')
+
+Canvas is responsive: resizes on window resize, redraws setup.
+Mobile check: window.innerWidth < 768 reduces star count.
+Respects prefers-reduced-motion: cancels animation if user has it set.
+
+
+────────────────────────────────────────────────────────────────────────────────
+7. SECTION BACKGROUNDS — GLASSMORPHISM SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+
+CRITICAL DESIGN DECISION: All sections have nearly transparent backgrounds
+so the animated Starfield canvas shows through every section on the page.
+
+Section base backgrounds:
+  Dark:  background: var(--dot-grid), rgba(7, 7, 14, 0.18)
+  Light: background: var(--dot-grid), rgba(238, 243, 255, 0.18)
+
+The dot-grid is a CSS variable set in :root that creates a subtle dot
+texture pattern using radial-gradient.
+
+Some sections (#about, #process, #team, #contact) use slightly more opaque:
+  Dark:  rgba(11, 12, 26, 0.22)
+
+Section-specific glow overlays are added via background-image (not background
+shorthand) to stack on top of the transparent background:
+  Example: #about has a purple glow at 88% right to give depth.
+
+The footer has stronger opacity (0.82) since it's the end of the page and
+a solid boundary makes sense visually.
+
+CARDS use glassmorphism — they blur the animated canvas behind them:
+
+  Dark mode cards:
+    background: rgba(14-15, 15-16, 28-35, 0.76-0.82)
+    backdrop-filter: blur(20-28px)
+
+  Light mode cards (sky-tinted, not white):
+    background: rgba(232, 238, 255, 0.66-0.72)
+    backdrop-filter: blur(18-28px)
+    NOTE: rgba(255,255,255,...) was intentionally changed to rgba(232,238,255,...)
+    so light mode cards feel sky-tinted (matches the Starfield sky) not plain white.
+
+If you ever see white/opaque cards in light mode — check that they use
+rgba(232, 238, 255, ...) not rgba(255, 255, 255, ...) for the background.
+
+
+────────────────────────────────────────────────────────────────────────────────
+8. SCROLL REVEAL SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+
+File: src/hooks/useScrollReveal.js
+
+Any element with className="reveal" will animate in when scrolled into view.
+The hook uses IntersectionObserver (threshold: 0.08, rootMargin: 0 0 -40px 0).
+
+When the element intersects, 'revealed' class is added. CSS handles the animation:
+  .reveal         → opacity: 0, transform: translateY(24px)
+  .revealed       → opacity: 1, transform: translateY(0), transition: ...
+
+Staggered reveals use CSS custom property:
+  style={{ '--reveal-delay': '0.1s' }}
+  .reveal { transition-delay: var(--reveal-delay, 0s); }
+
+IMPORTANT: Respects prefers-reduced-motion — if the user has that OS setting,
+the hook returns early and nothing animates (elements stay visible).
+
+The hook is called once in App.jsx. It runs a querySelectorAll('.reveal') on
+mount, so all reveal elements must be in the DOM at that point. Since nothing
+is lazy-loaded, this works fine.
+
+
+────────────────────────────────────────────────────────────────────────────────
+9. NAVIGATION (Nav.jsx)
+────────────────────────────────────────────────────────────────────────────────
+
+Features:
+  - Logo: Thaelon-removebg.png image (PNG with transparent bg)
+    IMPORTANT: logo in nav uses nav__logo-img class, footer uses footer__logo-img.
+    Both are the SAME image file. This is intentional — it's not "appearing twice",
+    the nav and footer both legitimately show the logo.
+  - Link highlights: IntersectionObserver watches each section and sets
+    'active' state to highlight the current section in the nav
+  - Scroll progress bar: thin accent-colored line at the bottom of the nav header
+    that scales from 0 to 1 (scaleX) based on page scroll progress
+  - Scrolled state: When window.scrollY > 20, nav gets 'nav--scrolled' class
+    which applies frosted glass background and border/shadow
+  - Mobile hamburger: three-span animated burger → X transition
+    Backdrop overlay closes menu on click
+    Body overflow hidden when menu open
+  - Theme toggle: Sun/Moon icon button, passes up to App.jsx via onToggleTheme
+  - CTA button: "Get in touch" → scrolls to #contact
+
+Nav dark scrolled: rgba(6, 6, 16, 0.82) + blur(22px)
+Nav light scrolled: rgba(228, 234, 255, 0.80) + blur(22px)
+
+
+────────────────────────────────────────────────────────────────────────────────
+10. SECTIONS — DETAILED BREAKDOWN
+────────────────────────────────────────────────────────────────────────────────
+
+HERO (Hero.jsx)
+  - Three ambient orb blobs as decorative elements
+  - Badge: "Taking on projects" with green dot
+  - H1: "THAELON" — large display type
+  - Tagline: "Imagine. Engineer. Evolve."
+  - Two CTAs: "View Our Work" (#products) + "Get a free estimate" (#contact)
+  - Stats strip: 2 Live Products | 5 Phases | 8 Core Capabilities
+  - Terminal widget (right side): fake code block showing the 'thaelon' object
+    with stack/craft/status and a blinking cursor
+
+CODE TICKER (CodeTicker.jsx)
+  - CSS marquee: a strip of programming terms that scroll infinitely left
+  - aria-hidden, purely decorative
+  - Items: JSX syntax tokens, React hooks, terminal commands
+  - Frosted glass container: backdrop-filter blur(14px)
+
+ABOUT (About.jsx)
+  - Values/ethos cards
+  - Cards have permanent left accent border (2px, accent color)
+  - Border gets brighter on hover
+  - Cards use glassmorphism blur
+
+SKILLS (Skills.jsx)
+  - Tech skills grouped by category using data-color tokens
+  - skillIcons.jsx provides SVG components for each skill
+  - Cards use glassmorphism
+
+PROCESS (Process.jsx)
+  - 5 numbered phases
+  - Large faded step numbers behind each card (--step-number-color token)
+  - Cards use glassmorphism
+
+PRODUCT LISTING (ProductListing.jsx)
+  - Shows Thaelon's own built products (from data/products.js)
+  - Clinora (color: emerald, type: on-premise, platforms: Web + Desktop)
+  - KareerOS (color: violet, type: saas, platforms: Web)
+  - Each product has a detail modal (uses Modal.jsx with className="modal--product-detail")
+  - Products have: name, tagline, description, features[], stats[], audience[], tech[], links
+
+TEAM (Team.jsx)
+  - Section heading: "Who builds Thaelon" / "Founder-led, craft-driven"
+  - Single founder card: horizontal two-column glassmorphism panel
+    LEFT COLUMN (240px, centered):
+      - 96px gradient avatar (KG) with spinning conic ring on hover
+      - Network badge (specialist icon) pinned bottom-right
+      - Name: Kishor Gangarde
+      - Role: FOUNDER & LEAD ENGINEER (uppercase, accent)
+      - Green pulsing status dot: "Available for projects"
+    RIGHT COLUMN (flex: 1):
+      - Bio paragraph
+      - Focus areas tags (accent-tinted pills)
+      - Footer: Ships section (Clinora · KareerOS as badges) + "View profile →" CTA button
+    Card has:
+      - Top accent gradient bar (::before pseudo-element)
+      - Left panel subtle tint to visually distinguish from right
+      - Two decorative glow blobs
+      - Hover: translateY(-5px), stronger shadow, top bar opacity 1
+  - "View profile →" button opens Modal with premium profile card:
+    MODAL PROFILE CARD:
+      - Full-bleed gradient band at top (escapes modal's 44px padding via margin: -44px -44px 0)
+      - 100px avatar overlapping the band (margin-top: -52px from band)
+      - Double ring glow shadow (uses specific hex: #0d0e21 for dark, #f6f7ff for light)
+      - Name (21px, bold) + ROLE (uppercase, accent) + GitHub/LinkedIn icon circles
+      - Bio text
+      - "SHIPS" tinted card with purple bullet dots for Clinora and KareerOS
+      - "Working with specialists" info card at bottom
+
+PRICING (Pricing.jsx)
+  - 4 Pillars (glassmorphism cards with SVG icons):
+    Requirement-Based, Highly Affordable, Fully Transparent, Flexible Scope
+  - 3 Scope Tiers:
+    Single Feature (₹2,500 from, 1 day–1 week)
+    Full Module (₹12,000 from, 2–4 weeks)
+    Full Product (₹40,000 from, 1–2 months)
+  - CTA: "Every project starts with a free estimate"
+  - Currency: Indian Rupee (₹) — Thaelon is based in India
+
+CONTACT (Contact.jsx)
+  - Contact form: name, email, project type (select), message, submit
+  - Info cards with contact details
+  - Form inputs use glassmorphism (backdrop-filter blur, tinted bg)
+
+
+────────────────────────────────────────────────────────────────────────────────
+11. MODAL SYSTEM (Modal.jsx)
+────────────────────────────────────────────────────────────────────────────────
+
+Reusable modal via React createPortal (renders into document.body).
+
+Props: isOpen, onClose, title, children, className
+
+Features:
+  - Escape key closes
+  - Backdrop click closes
+  - Body overflow hidden when open (scrollbar width compensated)
+  - Focus trap: close button gets focus on open
+  - Enter animation: scale + translateY spring (cubic-bezier 0.34, 1.56)
+  - Exit animation: fade + slight translateY (ANIM_MS = 230ms)
+  - Dark modal: deep navy gradient background, accent top border
+  - Light modal: white gradient background
+  - Scrollable (max-height: 85vh, overflow-y: auto)
+  - Close button: position: absolute, top/right 16px, z-index: 10
+    (z-index: 10 is REQUIRED so it appears above the Team modal's full-bleed
+     gradient header band which uses negative margins)
+
+Modal size variants:
+  .modal (base):              max-width: 560px
+  .modal--project:            max-width: 660px
+  .modal--product-detail:     max-width: 780px
+
+
+────────────────────────────────────────────────────────────────────────────────
+12. FOOTER (Footer.jsx)
+────────────────────────────────────────────────────────────────────────────────
+
+Three-column grid layout (desktop): brand (1.4fr) | explore (1fr) | we build (1fr)
+Mobile (<900px): brand spans full width, two columns below
+
+Brand column contains:
+  - Logo: <img src="./Thaelon-removebg.png"> with class footer__logo-img
+    IMPORTANT: footer__logo-img has align-self: flex-start
+    This is REQUIRED. Without it, the flex column container stretches the img
+    to full container width, distorting its aspect ratio.
+  - Tagline: "Imagine. Engineer. Evolve."
+  - About paragraph (hidden on mobile for compact layout)
+  - 6 social icons: GitHub, LinkedIn, WhatsApp, Instagram, Twitter/X, Facebook
+
+Explore column: nav links (About, Skills, Process, Products, Pricing, Contact)
+We Build column: service categories (AI & LLM Integration, Full-Stack Web Dev, etc.)
+
+Scroll-to-top button: fixed bottom-right, appears after 350px scroll, smooth scroll.
+
+Footer background: rgba(4, 4, 10, 0.82) dark / rgba(238, 243, 255, 0.88) light
+Both with backdrop-filter: blur(20px)
+
+
+────────────────────────────────────────────────────────────────────────────────
+13. CSS ARCHITECTURE — KEY RULES
+────────────────────────────────────────────────────────────────────────────────
+
+SINGLE FILE: Everything is in src/index.css. ~5300+ lines. Sections are separated
+by ASCII comment headers: /* ===== SECTION NAME ===== */
+
+RULE: Never use shorthand `background` when you need to LAYER dot-grid + color:
+  Correct:   background: var(--dot-grid), rgba(7,7,14,0.18);
+  Wrong:     background: rgba(7,7,14,0.18);  ← wipes out dot-grid
+
+RULE: Section backgrounds must remain nearly transparent (opacity ~0.18–0.22)
+so the Starfield canvas shows through. Increasing opacity kills the visual effect.
+
+RULE: Cards must use sky-tinted glass in light mode:
+  rgba(232, 238, 255, ...) — NOT rgba(255, 255, 255, ...)
+  Plain white looks disconnected from the sky background.
+
+RULE: backdrop-filter: blur() requires a semi-transparent background to be
+visible. Cards with `background: transparent` will NOT show blur.
+
+RESPONSIVE BREAKPOINTS:
+  < 900px:   tablet adjustments (footer columns, some section layouts)
+  < 768px:   mobile (mobile star count in Starfield, nav hamburger appears)
+  < 680px:   Team founder card stacks to column
+  < 600px:   Various section adjustments
+  < 560px:   Modal goes full-width with reduced padding (28px 22px)
+  < 480px:   Hero adjustments, team modal band margin adjusts
+
+DOT GRID pattern (--dot-grid variable):
+  A radial-gradient dot texture used as a CSS variable, applied to section
+  backgrounds to add visual texture that shows the canvas through.
+
+CAPABILITIES SEPARATOR:
+  .capabilities has a top separator with a centered accent gradient line
+  (a small 80px wide line that acts as a visual section break).
+
+
+────────────────────────────────────────────────────────────────────────────────
+14. DATA LAYER
+────────────────────────────────────────────────────────────────────────────────
+
+data/team.js
+  Array of team member objects. Currently 1 member: Kishor Gangarde (KG).
+  Fields: initials, name, role, bio, skills[], color, github, linkedin
+
+data/products.js
+  Thaelon's own built products. Currently 2:
+  - KareerOS: SaaS, Web, React+TS + Laravel 13 + Ollama/Python + MySQL + Docker
+    Live at: https://kareeros.netlify.app
+  - Clinora: On-premise, Web+Desktop, React 18 + Tauri 2 (Rust) + MySQL + ed25519
+    Download: GitHub releases /v1.2.0/Clinora_1.2.0_x64-setup.exe
+    Latest version: v1.2.0 (20+ screens, 40+ Tauri commands)
+
+data/projects.js
+  Client project data. Used by Projects.jsx (currently not rendered in App.jsx).
+
+data/skills.js
+  Skills grouped by category. Each skill has name + icon key.
+
+data/skillIcons.jsx
+  Exports an object mapping skill names to SVG React components.
+  Used by Skills.jsx to render tech stack icons.
+
+
+────────────────────────────────────────────────────────────────────────────────
+15. DEPLOYMENT
+────────────────────────────────────────────────────────────────────────────────
+
+  Host:       GitHub Pages
+  Repo:       https://github.com/K871git/thaelon
+  Live URL:   https://k871git.github.io/thaelon/
+  Base path:  /thaelon/ (configured in vite.config.js: base: '/thaelon/')
+
+  Build:  npm run build  →  dist/ folder
+  Deploy: push dist/ to gh-pages branch (or GitHub Actions workflow)
+
+  IMPORTANT: All asset references must be relative or use import.
+  Hard-coded '/image.png' will 404 on GitHub Pages — must be './image.png'
+  or imported. The logo uses src="./Thaelon-removebg.png" (public folder).
+
+
+────────────────────────────────────────────────────────────────────────────────
+16. CURRENTLY INACTIVE / RESERVED SECTIONS
+────────────────────────────────────────────────────────────────────────────────
+
+These sections exist in code but are NOT currently rendered:
+
+  Future.jsx        — "What's next" placeholder section
+  Projects.jsx      — Client project showcase (data exists in projects.js)
+  Testimonials.jsx  — Commented out in App.jsx, CSS exists
+
+When enabling Testimonials: uncomment in App.jsx and verify CSS is intact.
+When enabling Projects: add <Projects /> between <ProductListing /> and <Team />
+
+
+────────────────────────────────────────────────────────────────────────────────
+17. KNOWN DECISIONS & GOTCHAS
+────────────────────────────────────────────────────────────────────────────────
+
+1. NO TYPESCRIPT — intentional. Pure JavaScript + JSX throughout.
+
+2. SINGLE CSS FILE — index.css is ~5300+ lines. There are no CSS modules.
+   All class names use BEM-like naming: component__element--modifier.
+
+3. LOGO APPEARS IN BOTH NAV AND FOOTER — this is correct and intentional.
+   Same image file (Thaelon-removebg.png), different class names and sizes.
+
+4. STARFIELD CANVAS HORIZON FIX — The horizon warmth gradient in drawSky()
+   was causing warm peach tones to bleed into mid-page sections.
+   FIX: pushed gradient to H*0.82 → H (only bottom 18% of page height).
+   DO NOT move this gradient higher without testing all sections in light mode.
+
+5. FOOTER LOGO STRETCHING FIX — Footer brand is a flex column. Without
+   align-self: flex-start on the img, flex stretches it horizontally.
+   footer__logo-img MUST have align-self: flex-start.
+
+6. TEAM MODAL CLOSE BUTTON Z-INDEX — The team modal uses a full-bleed gradient
+   band (negative margins to escape modal padding). The modal close button MUST
+   have z-index: 10 or it disappears behind the band.
+
+7. TEAM MODAL AVATAR RING SHADOW — The double-ring glow shadow uses specific
+   hex colors that match the modal background:
+   Dark: 0 0 0 4px #0d0e21  (matches dark modal gradient start)
+   Light: 0 0 0 4px #f6f7ff  (matches light modal gradient)
+   If modal background changes, update these hex values too.
+
+8. LIGHT MODE CARDS — Must use rgba(232, 238, 255, ...) not rgba(255, 255, 255, ...).
+   The sky-tint connects the cards to the light-mode Starfield sky background.
+
+9. GIT RULE — Never commit, push, stage, or run ANY git commands unless the
+   owner (Kishor) explicitly asks. This is a hard rule.
+
+
+────────────────────────────────────────────────────────────────────────────────
+18. PRODUCTS DETAIL — CLINORA
+────────────────────────────────────────────────────────────────────────────────
+
+  Type:      Desktop app (Windows installer) + web-accessible local server
+  Stack:     React 18, Tauri 2 (Rust backend), MySQL + SQLx, React Router v6,
+             ed25519 cryptographic licensing, SweetAlert2, Vite
+  Current:   v1.2.0 — 20+ screens, 40+ typed Tauri commands
+  Roles:     Doctor interface + Pharmacist interface (distinct UIs, role-based)
+
+  Doctor features:
+    - Patient registration, OPD consultation flow
+    - Prescription builder (duplicate detection, dosage warnings, allergy alerts)
+    - Reusable prescription templates
+    - EMR: allergies, conditions, surgeries, labs, family history
+
+  Pharmacist features:
+    - Medicine inventory and stock management
+    - Prescription dispensing queue
+    - Billing and payment tracking (paid/partial/unpaid)
+
+  Licensing:
+    - ed25519-signed clinic-specific keys
+    - Enforces: monthly / annual / lifetime tiers
+    - 100% offline — no cloud validation, no internet dependency
+
+  Download: https://github.com/K871git/thaelon-products/releases/download/v1.2.0/Clinora_1.2.0_x64-setup.exe
+
+
+────────────────────────────────────────────────────────────────────────────────
+19. PRODUCTS DETAIL — KAREEROS
+────────────────────────────────────────────────────────────────────────────────
+
+  Type:      SaaS, Web
+  Stack:     React + TypeScript (frontend), Laravel 13 (backend), MySQL,
+             Ollama + Python (local LLM), Docker
+  Live at:   https://kareeros.netlify.app
+
+  Core concept: A locally-hosted Ollama model explains interview questions —
+  not just listing answers, but breaking down WHY a question is asked, what
+  a strong answer looks like, and how to structure thinking.
+
+  Covers: DSA, System Design, HR, Behavioural rounds
+  Audience: Students, Junior Developers, Mid-Senior Engineers
+
+
+────────────────────────────────────────────────────────────────────────────────
+20. OWNER / FOUNDER INFO
+────────────────────────────────────────────────────────────────────────────────
+
+  Name:     Kishor Gangarde
+  Initials: KG
+  Role:     Founder & Lead Engineer, Thaelon
+  GitHub:   https://github.com/K871git
+  LinkedIn: https://linkedin.com/in/kishor-gangarde
+  Skills:   React, Laravel, Node.js, AI/LLMs, System Design,
+            Rust (Tauri), MySQL, Docker, TypeScript
+  Status:   Available for projects
+
+================================================================================
+  END OF CONTEXT — Last updated: September 2026
+================================================================================
