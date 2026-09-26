@@ -41,7 +41,7 @@ export default function Team() {
           <button
             className="team__founder-card"
             onClick={() => setOpen(true)}
-            aria-label="Meet Kishor Gangarde, founder of Thaelon"
+            aria-label="Meet Kishor Gangarde, founder of Thaelon — click to view full profile"
           >
             {/* decorative glow blobs */}
             <div className="team__founder-glow team__founder-glow--1" aria-hidden="true" />
@@ -98,6 +98,23 @@ export default function Team() {
               </div>
             </div>
           </button>
+        </div>
+
+        <div className="team__ghost-callout reveal" style={{ '--reveal-delay': '0.18s' }}>
+          <div className="team__ghost-callout-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div className="team__ghost-callout-content">
+            <h3 className="team__ghost-callout-title">The Ghost Team</h3>
+            <p className="team__ghost-callout-desc">
+              For projects that need more than one engineer — Thaelon works with a vetted network of specialist engineers who operate quietly in the background. Every engagement remains founder-led and directly accountable.
+            </p>
+          </div>
+          <a href="#contact" className="team__ghost-callout-cta">Work with us →</a>
         </div>
       </div>
 

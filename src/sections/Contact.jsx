@@ -225,6 +225,13 @@ export default function Contact() {
                 )}
               </button>
 
+              <p className="contact__form-response-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Typically responds within 24 hours
+              </p>
+
               {status === 'error' && (
                 <p className="contact__form-error">
                   Something went wrong. Email us directly at{' '}

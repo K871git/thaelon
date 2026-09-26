@@ -2,6 +2,7 @@ const values = [
   {
     label: 'Shipped, not just built',
     desc: 'Two live products in production. Every client project goes live — not into a drawer.',
+    color: 'emerald',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
@@ -11,6 +12,7 @@ const values = [
   {
     label: 'Deep, not broad',
     desc: '8 engineering layers. One team. No handoffs between specialists who never talk to each other.',
+    color: 'violet',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
@@ -20,6 +22,7 @@ const values = [
   {
     label: 'Honest from the start',
     desc: 'Scope is defined before a line of code is written. Price doesn\'t change unless the spec does.',
+    color: 'amber',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
@@ -62,6 +65,7 @@ export default function About() {
               <div
                 className="about__value-card reveal"
                 key={v.label}
+                data-color={v.color}
                 style={{ '--reveal-delay': `${i * 0.1}s` }}
               >
                 <div className="about__value-icon" aria-hidden="true">{v.icon}</div>

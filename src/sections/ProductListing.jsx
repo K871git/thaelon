@@ -104,62 +104,76 @@ export default function ProductListing() {
           SaaS platforms and installable products — built by Thaelon, ready to deploy.
         </p>
 
-        <div className="products__grid">
+        <div className="products__list">
           {products.map((p, i) => {
             const meta = TYPE_META[p.type]
             return (
               <article
                 key={p.name}
-                className="products__item reveal"
+                className={`products__row reveal${i % 2 === 1 ? ' products__row--flip' : ''}`}
                 data-color={p.color}
-                style={{ '--reveal-delay': `${i * 0.1}s` }}
-                role="button"
-                tabIndex={0}
-                aria-label={`Explore ${p.name}`}
-                onClick={() => setModal(p)}
-                onKeyDown={e => e.key === 'Enter' && setModal(p)}
+                style={{ '--reveal-delay': `${i * 0.12}s` }}
               >
-                <span className="products__item-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+                {/* INFO PANEL */}
+                <div className="products__row-info">
+                  <span className="products__row-num" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
 
-                {/* Card head: icon + name + badges side by side */}
-                <div className="products__card-head">
-                  {PRODUCT_ICONS[p.name] && (
-                    <div className="products__icon-area">{PRODUCT_ICONS[p.name]}</div>
-                  )}
-                  <div className="products__card-identity">
-                    <h3 className="products__name">{p.name}</h3>
-                    <div className="products__item-badges">
-                      <span className="products__type-badge">{meta.label}</span>
-                      <StatusBadge status={p.status} />
+                  <div className="products__card-head">
+                    {PRODUCT_ICONS[p.name] && (
+                      <div className="products__icon-area">{PRODUCT_ICONS[p.name]}</div>
+                    )}
+                    <div className="products__card-identity">
+                      <h3 className="products__name">{p.name}</h3>
+                      <div className="products__item-badges">
+                        <span className="products__type-badge">{meta.label}</span>
+                        <StatusBadge status={p.status} />
+                      </div>
                     </div>
+                  </div>
+
+                  <PlatformBadges platforms={p.platforms} />
+                  <p className="products__tagline">{p.tagline}</p>
+
+                  {p.features?.length > 0 && (
+                    <ul className="products__features">
+                      {p.features.slice(0, 3).map(f => <li key={f}>{f}</li>)}
+                    </ul>
+                  )}
+
+                  <div className="products__row-footer">
+                    {p.stats?.length > 0 && (
+                      <ul className="products__stats-strip">
+                        {p.stats.map(s => <li key={s}>{s}</li>)}
+                      </ul>
+                    )}
+                    <button
+                      className="products__row-cta"
+                      onClick={() => setModal(p)}
+                      aria-label={`Explore ${p.name}`}
+                    >
+                      Explore {p.name} <ArrowIcon />
+                    </button>
                   </div>
                 </div>
 
-                {/* Platform chips */}
-                <PlatformBadges platforms={p.platforms} />
-
-                {/* Description */}
-                <p className="products__tagline">{p.tagline}</p>
-
-                {/* 2 key feature highlights */}
-                {p.features?.length > 0 && (
-                  <ul className="products__features">
-                    {p.features.slice(0, 2).map(f => <li key={f}>{f}</li>)}
-                  </ul>
-                )}
-
-                {/* Footer: stats left + explore right */}
-                <div className="products__item-footer">
-                  {p.stats?.length > 0 && (
-                    <ul className="products__stats-strip">
-                      {p.stats.map(s => <li key={s}>{s}</li>)}
-                    </ul>
-                  )}
-                  <span className="products__explore-cta">
-                    Explore <ArrowIcon />
-                  </span>
+                {/* VISUAL PANEL */}
+                <div className="products__row-visual" aria-hidden="true">
+                  <div className="products__row-visual-inner">
+                    <div className="products__row-visual-icon">{PRODUCT_ICONS[p.name]}</div>
+                    <p className="products__row-visual-name">{p.name}</p>
+                    <div className="products__row-visual-stats">
+                      {p.stats.map(s => (
+                        <span key={s} className="products__row-visual-stat">{s}</span>
+                      ))}
+                    </div>
+                    <div className="products__row-visual-tech">
+                      {p.tech.slice(0, 4).map(t => (
+                        <span key={t} className="products__row-visual-tech-tag">{t}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </article>
             )

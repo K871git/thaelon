@@ -57,6 +57,7 @@ const TIERS = [
     desc: 'Complete feature set — backend, frontend, tests, and documentation.',
     duration: '2 to 4 weeks',
     from: '₹12,000',
+    featured: true,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
@@ -107,7 +108,14 @@ export default function Pricing() {
           <p className="pricing__tiers-label">What does a typical project look like?</p>
           <div className="pricing__tiers-grid">
             {TIERS.map((t, i) => (
-              <div key={t.label} className="pricing__tier" style={{ '--reveal-delay': `${i * 0.08}s` }}>
+              <div
+                key={t.label}
+                className={`pricing__tier${t.featured ? ' pricing__tier--featured' : ''}`}
+                style={{ '--reveal-delay': `${i * 0.08}s` }}
+              >
+                {t.featured && (
+                  <div className="pricing__tier-badge">Most Popular</div>
+                )}
                 <div className="pricing__tier-icon" aria-hidden="true">{t.icon}</div>
                 <div className="pricing__tier-body">
                   <strong className="pricing__tier-label">{t.label}</strong>

@@ -54,13 +54,13 @@ export default function Hero() {
               <span className="hero__terminal-file">main.ts</span>
             </div>
             <div className="hero__terminal-body">
-              <span className="hero__terminal-ln">
+              <span className="hero__terminal-ln hero__terminal-ln--anim" style={{ '--ln-delay': '0.2s' }}>
                 <span className="tc-kw">const </span>
                 <span className="tc-fn">thaelon</span>
                 <span className="tc-op"> = </span>
                 <span className="tc-brc">{'{'}</span>
               </span>
-              <span className="hero__terminal-ln hero__terminal-ln--in">
+              <span className="hero__terminal-ln hero__terminal-ln--in hero__terminal-ln--anim" style={{ '--ln-delay': '0.55s' }}>
                 <span className="tc-prop">stack</span>
                 <span className="tc-op">: </span>
                 <span className="tc-brc">[</span>
@@ -72,19 +72,19 @@ export default function Hero() {
                 <span className="tc-brc">]</span>
                 <span className="tc-op">,</span>
               </span>
-              <span className="hero__terminal-ln hero__terminal-ln--in">
+              <span className="hero__terminal-ln hero__terminal-ln--in hero__terminal-ln--anim" style={{ '--ln-delay': '0.9s' }}>
                 <span className="tc-prop">craft</span>
                 <span className="tc-op">: </span>
                 <span className="tc-str">"ship what matters"</span>
                 <span className="tc-op">,</span>
               </span>
-              <span className="hero__terminal-ln hero__terminal-ln--in">
+              <span className="hero__terminal-ln hero__terminal-ln--in hero__terminal-ln--anim" style={{ '--ln-delay': '1.25s' }}>
                 <span className="tc-prop">status</span>
                 <span className="tc-op">: </span>
                 <span className="tc-str">"shipping"</span>
                 <span className="tc-cursor" />
               </span>
-              <span className="hero__terminal-ln">
+              <span className="hero__terminal-ln hero__terminal-ln--anim" style={{ '--ln-delay': '1.6s' }}>
                 <span className="tc-brc">{'}'}</span>
               </span>
             </div>
