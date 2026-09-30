@@ -8,6 +8,7 @@ import About from './sections/About'
 import Skills from './sections/Skills'
 import Process from './sections/Process'
 import ProductListing from './sections/ProductListing'
+import Craft from './sections/Craft'
 import Team from './sections/Team'
 // import Testimonials from './sections/Testimonials'
 import Pricing from './sections/Pricing'
@@ -43,6 +44,7 @@ export default function App() {
         <Skills />
         <Process />
         <ProductListing />
+        <Craft />
         <Team />
         {/* <Testimonials /> */}
         <Pricing />
