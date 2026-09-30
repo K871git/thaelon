@@ -62,6 +62,78 @@ const ArrowIcon = () => (
   </svg>
 )
 
+const ChromeDots = () => (
+  <>
+    <span className="products__mockup-dot products__mockup-dot--red" />
+    <span className="products__mockup-dot products__mockup-dot--yellow" />
+    <span className="products__mockup-dot products__mockup-dot--green" />
+  </>
+)
+
+const PRODUCT_MOCKUPS = {
+  KareerOS: (
+    <div className="products__mockup">
+      <div className="products__mockup-chrome">
+        <ChromeDots />
+        <span className="products__mockup-chrome-title">System Design · Question 4 of 12</span>
+      </div>
+      <div className="products__mockup-body">
+        <p className="products__mockup-q">
+          How does consistent hashing work in distributed systems?
+        </p>
+        <div className="products__mockup-ai-block">
+          <span className="products__mockup-ai-chip">AI</span>
+          <p className="products__mockup-ai-text">
+            Maps servers to a virtual ring. When nodes join or leave, only adjacent keys remapped — minimising redistribution cost across the cluster.
+          </p>
+        </div>
+        <div className="products__mockup-rounds">
+          <span>DSA</span>
+          <span>System Design</span>
+          <span>HR</span>
+          <span>Behavioural</span>
+        </div>
+      </div>
+    </div>
+  ),
+  Clinora: (
+    <div className="products__mockup">
+      <div className="products__mockup-chrome">
+        <ChromeDots />
+        <span className="products__mockup-chrome-title">OPD Visit — Active</span>
+      </div>
+      <div className="products__mockup-body">
+        <div className="products__mockup-patient">
+          <span className="products__mockup-patient-name">Ravi Kumar</span>
+          <span className="products__mockup-patient-meta">42 · M · OPD-2847</span>
+        </div>
+        <div className="products__mockup-vitals">
+          <div className="products__mockup-vital">
+            <span>BP</span>
+            <strong>120/80</strong>
+          </div>
+          <div className="products__mockup-vital">
+            <span>Temp</span>
+            <strong>98.6°F</strong>
+          </div>
+          <div className="products__mockup-vital">
+            <span>SpO₂</span>
+            <strong>99%</strong>
+          </div>
+        </div>
+        <div className="products__mockup-rx">
+          <span className="products__mockup-rx-label">Rx</span>
+          Metformin 500mg · BD · 30 days
+        </div>
+        <div className="products__mockup-visit-footer">
+          <span className="products__mockup-status-dot" />
+          Visit complete · Offline
+        </div>
+      </div>
+    </div>
+  ),
+}
+
 function StatusBadge({ status }) {
   if (status === 'live') {
     return (
@@ -161,18 +233,9 @@ export default function ProductListing() {
                 {/* VISUAL PANEL */}
                 <div className="products__row-visual" aria-hidden="true">
                   <div className="products__row-visual-inner">
-                    <div className="products__row-visual-icon">{PRODUCT_ICONS[p.name]}</div>
-                    <p className="products__row-visual-name">{p.name}</p>
-                    <div className="products__row-visual-stats">
-                      {p.stats.map(s => (
-                        <span key={s} className="products__row-visual-stat">{s}</span>
-                      ))}
-                    </div>
-                    <div className="products__row-visual-tech">
-                      {p.tech.slice(0, 4).map(t => (
-                        <span key={t} className="products__row-visual-tech-tag">{t}</span>
-                      ))}
-                    </div>
+                    {PRODUCT_MOCKUPS[p.name] ?? (
+                      <div className="products__row-visual-icon">{PRODUCT_ICONS[p.name]}</div>
+                    )}
                   </div>
                 </div>
               </article>
@@ -188,129 +251,132 @@ export default function ProductListing() {
           return (
             <div className="product-detail" data-color={modal.color}>
 
-              {/* ── Header ── */}
-              <div className="product-detail__header">
-                <div className="product-detail__header-top">
-                  <div className="product-detail__header-icon" aria-hidden="true">
-                    {PRODUCT_ICONS[modal.name]}
+              {/* ── Gradient accent band ── */}
+              <div className="product-detail__band" aria-hidden="true" />
+
+              {/* ── Identity block — overlaps band ── */}
+              <div className="product-detail__identity">
+                <div className="product-detail__identity-icon" aria-hidden="true">
+                  {PRODUCT_ICONS[modal.name]}
+                </div>
+                <div className="product-detail__identity-meta">
+                  <div className="product-detail__identity-badges">
+                    <span className="products__type-badge">{meta.label}</span>
+                    <StatusBadge status={modal.status} />
                   </div>
-                  <div className="product-detail__header-meta">
-                    <div className="product-detail__header-badges">
-                      <span className="products__type-badge">{meta.label}</span>
-                      <StatusBadge status={modal.status} />
-                    </div>
-                    <h2 className="product-detail__name">{modal.name}</h2>
-                    <p className="product-detail__tagline">{modal.tagline}</p>
-                    <PlatformBadges platforms={modal.platforms} size="lg" />
-                  </div>
+                  <h2 className="product-detail__name">{modal.name}</h2>
+                  <p className="product-detail__tagline">{modal.tagline}</p>
+                  <PlatformBadges platforms={modal.platforms} size="lg" />
                 </div>
               </div>
 
-              {/* ── Body grid (overview left, sidebar right on wide) ── */}
-              <div className="product-detail__body">
+              {/* ── Scrollable content ── */}
+              <div className="product-detail__content">
 
-                {/* Left / main column */}
-                <div className="product-detail__main">
+                <div className="product-detail__body">
 
-                  {/* Overview */}
-                  <div className="product-detail__section">
-                    <h4 className="product-detail__section-title">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                      Overview
-                    </h4>
-                    {modal.description.split('\n\n').map((para, i) => (
-                      <p key={i} className="product-detail__desc">{para}</p>
-                    ))}
-                  </div>
-
-                  {/* Features */}
-                  <div className="product-detail__section">
-                    <h4 className="product-detail__section-title">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                      Key Capabilities
-                    </h4>
-                    <ul className="product-detail__features">
-                      {modal.features.map(f => <li key={f}>{f}</li>)}
-                    </ul>
-                  </div>
-
-                </div>
-
-                {/* Right / sidebar */}
-                <div className="product-detail__sidebar">
-
-                  {/* Tech stack */}
-                  <div className="product-detail__section">
-                    <h4 className="product-detail__section-title">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                      Tech Stack
-                    </h4>
-                    <ul className="product-detail__tech">
-                      {modal.tech.map(t => <li key={t}>{t}</li>)}
-                    </ul>
-                  </div>
-
-                  {/* Resources */}
-                  {(modal.docs || modal.datasheet) && (
+                  {/* Left — overview + capabilities */}
+                  <div className="product-detail__main">
                     <div className="product-detail__section">
                       <h4 className="product-detail__section-title">
-                        <DocIcon />
-                        Resources
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        Overview
                       </h4>
-                      <div className="product-detail__resources">
-                        {modal.docs && (
-                          <a href={modal.docs} target="_blank" rel="noopener noreferrer" className="product-detail__resource">
-                            <DocIcon />
-                            <div>
-                              <strong>Documentation</strong>
-                              <span>Setup guides & API reference</span>
-                            </div>
-                            <ExternalIcon />
-                          </a>
-                        )}
-                        {modal.datasheet && (
-                          <a href={modal.datasheet} download className="product-detail__resource">
-                            <DocIcon />
-                            <div>
-                              <strong>Datasheet</strong>
-                              <span>Specs, requirements & pricing</span>
-                            </div>
-                          </a>
-                        )}
-                      </div>
+                      {modal.description.split('\n\n').map((para, i) => (
+                        <p key={i} className="product-detail__desc">{para}</p>
+                      ))}
                     </div>
-                  )}
 
+                    <div className="product-detail__section">
+                      <h4 className="product-detail__section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                        Key Capabilities
+                      </h4>
+                      <ul className="product-detail__features">
+                        {modal.features.map(f => <li key={f}>{f}</li>)}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Right — tech + resources */}
+                  <div className="product-detail__sidebar">
+                    <div className="product-detail__section">
+                      <h4 className="product-detail__section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        Tech Stack
+                      </h4>
+                      <ul className="product-detail__tech">
+                        {modal.tech.map(t => <li key={t}>{t}</li>)}
+                      </ul>
+                    </div>
+
+                    {modal.stats?.length > 0 && (
+                      <div className="product-detail__section">
+                        <h4 className="product-detail__section-title">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                          Quick Facts
+                        </h4>
+                        <div className="product-detail__facts">
+                          {modal.stats.map(s => <span key={s}>{s}</span>)}
+                        </div>
+                      </div>
+                    )}
+
+                    {(modal.docs || modal.datasheet) && (
+                      <div className="product-detail__section">
+                        <h4 className="product-detail__section-title">
+                          <DocIcon />
+                          Resources
+                        </h4>
+                        <div className="product-detail__resources">
+                          {modal.docs && (
+                            <a href={modal.docs} target="_blank" rel="noopener noreferrer" className="product-detail__resource">
+                              <DocIcon />
+                              <div><strong>Documentation</strong><span>Setup guides & API reference</span></div>
+                              <ExternalIcon />
+                            </a>
+                          )}
+                          {modal.datasheet && (
+                            <a href={modal.datasheet} download className="product-detail__resource">
+                              <DocIcon />
+                              <div><strong>Datasheet</strong><span>Specs, requirements & pricing</span></div>
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* ── Footer actions ── */}
-              <div className="product-detail__footer">
-                {modal.link && (
-                  <a href={modal.link} target="_blank" rel="noopener noreferrer"
-                    className="project-modal__action-btn">
-                    <ExternalIcon />
-                    {modal.type === 'saas' ? `Try ${modal.name}` : 'Open Web App'}
-                  </a>
-                )}
-                {modal.download && (
-                  <a href={modal.download}
-                    className="project-modal__action-btn project-modal__action-btn--download">
-                    <svg className="download-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="7 10 12 15 17 10" />
-                      <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    Download for Windows
-                  </a>
-                )}
-                {!modal.link && !modal.download && (
-                  <a href="#contact" onClick={close} className="project-modal__action-btn">
-                    Contact us about {modal.name} →
-                  </a>
-                )}
-              </div>
+                {/* ── CTA footer ── */}
+                <div className="product-detail__footer">
+                  {modal.link && (
+                    <a href={modal.link} target="_blank" rel="noopener noreferrer"
+                      className="product-detail__cta product-detail__cta--primary">
+                      <ExternalIcon />
+                      {modal.type === 'saas' ? `Try ${modal.name}` : 'Open Web App'}
+                    </a>
+                  )}
+                  {modal.download && (
+                    <a href={modal.download}
+                      className="product-detail__cta product-detail__cta--download">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                      </svg>
+                      Download for Windows
+                    </a>
+                  )}
+                  {!modal.link && !modal.download && (
+                    <a href="#contact" onClick={close}
+                      className="product-detail__cta product-detail__cta--primary">
+                      Contact us about {modal.name} →
+                    </a>
+                  )}
+                </div>
 
+              </div>
             </div>
           )
         })()}

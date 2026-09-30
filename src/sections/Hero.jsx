@@ -1,4 +1,29 @@
+import { useState, useEffect } from 'react'
+
+const STATS = [
+  { target: 2, label: 'Live products' },
+  { target: 5, label: 'Phases' },
+  { target: 8, label: 'Core capabilities' },
+]
+
 export default function Hero() {
+  const [counts, setCounts] = useState([0, 0, 0])
+
+  useEffect(() => {
+    const duration = 1400
+    const fps = 60
+    const total = Math.floor(duration / (1000 / fps))
+    let frame = 0
+    const id = setInterval(() => {
+      frame++
+      const p = Math.min(frame / total, 1)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setCounts(STATS.map(s => Math.round(s.target * eased)))
+      if (p >= 1) clearInterval(id)
+    }, 1000 / fps)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <section className="hero" aria-label="Introduction">
       {/* ambient orb blobs */}
@@ -18,8 +43,7 @@ export default function Hero() {
           <p className="hero__tagline">Imagine. Engineer. Evolve.</p>
 
           <p className="hero__desc">
-            A small team of engineers building purposeful technology.
-            Focused on craft, driven by curiosity — working on what matters next.
+            Two live products. Eight engineering layers. One team that ships.
           </p>
 
           <div className="hero__actions">
@@ -28,20 +52,15 @@ export default function Hero() {
           </div>
 
           <div className="hero__stats" aria-label="Quick stats">
-            <div className="hero__stat">
-              <span className="hero__stat-num">2</span>
-              <span className="hero__stat-label">Live products</span>
-            </div>
-            <div className="hero__stat-divider" aria-hidden="true" />
-            <div className="hero__stat">
-              <span className="hero__stat-num">5</span>
-              <span className="hero__stat-label">Phases</span>
-            </div>
-            <div className="hero__stat-divider" aria-hidden="true" />
-            <div className="hero__stat">
-              <span className="hero__stat-num">8</span>
-              <span className="hero__stat-label">Core capabilities</span>
-            </div>
+            {STATS.map((s, i) => (
+              <>
+                {i > 0 && <div key={`div-${i}`} className="hero__stat-divider" aria-hidden="true" />}
+                <div key={s.label} className="hero__stat">
+                  <span className="hero__stat-num" aria-label={String(s.target)}>{counts[i]}</span>
+                  <span className="hero__stat-label">{s.label}</span>
+                </div>
+              </>
+            ))}
           </div>
         </div>
 
