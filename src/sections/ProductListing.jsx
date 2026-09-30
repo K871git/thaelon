@@ -245,22 +245,19 @@ export default function ProductListing() {
       </div>
 
       {/* ── DETAIL MODAL ── */}
-      <Modal isOpen={!!modal} onClose={close} title={modal?.name} className="modal--product-detail">
+      <Modal isOpen={!!modal} onClose={close} title={null} className="modal--product-detail">
         {modal && (() => {
           const meta = TYPE_META[modal.type]
           return (
             <div className="product-detail" data-color={modal.color}>
 
-              {/* ── Gradient accent band ── */}
-              <div className="product-detail__band" aria-hidden="true" />
-
-              {/* ── Identity block — overlaps band ── */}
-              <div className="product-detail__identity">
-                <div className="product-detail__identity-icon" aria-hidden="true">
+              {/* ── Header ── */}
+              <div className="product-detail__head">
+                <div className="product-detail__head-icon" aria-hidden="true">
                   {PRODUCT_ICONS[modal.name]}
                 </div>
-                <div className="product-detail__identity-meta">
-                  <div className="product-detail__identity-badges">
+                <div className="product-detail__head-body">
+                  <div className="product-detail__head-badges">
                     <span className="products__type-badge">{meta.label}</span>
                     <StatusBadge status={modal.status} />
                   </div>
@@ -270,8 +267,8 @@ export default function ProductListing() {
                 </div>
               </div>
 
-              {/* ── Scrollable content ── */}
-              <div className="product-detail__content">
+              {/* ── Scrollable body ── */}
+              <div className="product-detail__scroll">
 
                 <div className="product-detail__body">
 
@@ -298,7 +295,7 @@ export default function ProductListing() {
                     </div>
                   </div>
 
-                  {/* Right — tech + resources */}
+                  {/* Right — tech + facts + resources */}
                   <div className="product-detail__sidebar">
                     <div className="product-detail__section">
                       <h4 className="product-detail__section-title">
