@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Starfield from './components/Starfield'
 import CodeTicker from './components/CodeTicker'
+import TrustTicker from './components/TrustTicker'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -47,6 +48,7 @@ export default function App() {
         <Craft />
         <Team />
         {/* <Testimonials /> */}
+        <TrustTicker />
         <Pricing />
         <Contact />
       </main>
