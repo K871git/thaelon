@@ -29,6 +29,23 @@ export default function Footer() {
 
   return (
     <>
+      {/* ── Pre-footer CTA band — outside <footer> for clean separation ── */}
+      <div className="cta-band" aria-label="Call to action">
+        <div className="cta-band__glow" aria-hidden="true" />
+        <div className="container cta-band__inner">
+          <span className="cta-band__eyebrow">Ready to build?</span>
+          <h2 className="cta-band__heading">
+            From your idea<br className="cta-band__br" /> to a live product.
+          </h2>
+          <p className="cta-band__sub">
+            Scope it with us — free, honest, no commitment.
+          </p>
+          <a href="#contact" className="btn btn-primary cta-band__btn">
+            Get a free estimate
+          </a>
+        </div>
+      </div>
+
       <footer className="footer" role="contentinfo">
         <div className="container">
           <div className="footer__body">

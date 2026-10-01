@@ -35,7 +35,7 @@ export default function Hero() {
         <div className="hero__content">
           <div className="hero__badge">
             <span className="hero__badge-dot" aria-hidden="true" />
-            Taking on projects
+            Accepting new projects
           </div>
 
           <h1 className="hero__title">THAELON</h1>
