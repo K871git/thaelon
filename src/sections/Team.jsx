@@ -28,7 +28,7 @@ export default function Team() {
   const close = useCallback(() => setOpen(false), [])
 
   return (
-    <section className="section" id="team" aria-labelledby="team-heading">
+    <section className="section team-section" id="team" aria-labelledby="team-heading">
       <div className="container">
         <span className="section-label reveal">Who builds Thaelon</span>
         <h2 className="section-heading reveal" id="team-heading">Founder-led, craft-driven</h2>
@@ -47,8 +47,8 @@ export default function Team() {
             <div className="team__founder-glow team__founder-glow--1" aria-hidden="true" />
             <div className="team__founder-glow team__founder-glow--2" aria-hidden="true" />
 
-            {/* LEFT: identity */}
-            <div className="team__founder-identity">
+            {/* ── Profile header row: avatar + identity + stats ── */}
+            <div className="team__founder-header">
               <div className="team__founder-avatar-wrap" aria-hidden="true">
                 <div className="team__founder-avatar">KG</div>
                 <div className="team__founder-badge" title="Specialist network">
@@ -59,18 +59,48 @@ export default function Team() {
                   </svg>
                 </div>
               </div>
-              <h3 className="team__founder-name">Kishor Gangarde</h3>
-              <p className="team__founder-role">Founder &amp; Lead Engineer</p>
-              <div className="team__founder-status">
-                <span className="team__founder-status-dot" aria-hidden="true" />
-                Available for projects
+
+              <div className="team__founder-identity">
+                <h3 className="team__founder-name">Kishor Gangarde</h3>
+                <span className="team__founder-role-badge">Founder &amp; Lead Engineer</span>
+                <div className="team__founder-status">
+                  <span className="team__founder-status-dot" aria-hidden="true" />
+                  Available for projects
+                </div>
+                <div className="team__founder-socials">
+                  <a href="https://github.com/K871git" target="_blank" rel="noopener noreferrer"
+                    className="team__founder-social" aria-label="GitHub">
+                    <GitHubIcon />
+                  </a>
+                  <a href="https://linkedin.com/in/kishor-gangarde" target="_blank" rel="noopener noreferrer"
+                    className="team__founder-social" aria-label="LinkedIn">
+                    <LinkedInIcon />
+                  </a>
+                </div>
+              </div>
+
+              <div className="team__founder-stats" aria-label="Quick stats">
+                <div className="team__founder-stat">
+                  <span className="team__founder-stat-val">2.5+</span>
+                  <span className="team__founder-stat-key">Years</span>
+                </div>
+                <div className="team__founder-stat-sep" aria-hidden="true" />
+                <div className="team__founder-stat">
+                  <span className="team__founder-stat-val">2</span>
+                  <span className="team__founder-stat-key">Products</span>
+                </div>
+                <div className="team__founder-stat-sep" aria-hidden="true" />
+                <div className="team__founder-stat">
+                  <span className="team__founder-stat-val">8+</span>
+                  <span className="team__founder-stat-key">Caps</span>
+                </div>
               </div>
             </div>
 
-            {/* vertical divider */}
-            <div className="team__founder-divider" aria-hidden="true" />
+            {/* ── Horizontal divider ── */}
+            <div className="team__founder-hdivider" aria-hidden="true" />
 
-            {/* RIGHT: detail */}
+            {/* ── Detail: bio + focus + footer ── */}
             <div className="team__founder-detail">
               <p className="team__founder-bio">
                 Architect and builder of Clinora and KareerOS. Takes on client work across
@@ -101,20 +131,36 @@ export default function Team() {
         </div>
 
         <div className="team__ghost-callout reveal" style={{ '--reveal-delay': '0.18s' }}>
-          <div className="team__ghost-callout-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
+          {/* ── header row ── */}
+          <div className="team__ghost-callout-head">
+            <div className="team__ghost-callout-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div className="team__ghost-callout-id">
+              <h3 className="team__ghost-callout-title">The Ghost Team</h3>
+              <p className="team__ghost-callout-tagline">On-demand specialist network</p>
+            </div>
+            <span className="team__ghost-callout-label">Vetted</span>
           </div>
-          <div className="team__ghost-callout-content">
-            <h3 className="team__ghost-callout-title">The Ghost Team</h3>
-            <p className="team__ghost-callout-desc">
-              For projects that need more than one engineer — Thaelon works with a vetted network of specialist engineers who operate quietly in the background. Every engagement remains founder-led and directly accountable.
-            </p>
+
+          {/* ── description ── */}
+          <p className="team__ghost-callout-desc">
+            For projects that need more than one engineer — Thaelon works with a vetted network of specialist engineers who operate quietly in the background. Every engagement remains founder-led and directly accountable.
+          </p>
+
+          {/* ── specs + cta ── */}
+          <div className="team__ghost-callout-footer">
+            <div className="team__ghost-specs">
+              {['UI/UX', 'Backend', 'AI & ML', 'Mobile', 'DevOps'].map(s => (
+                <span key={s} className="team__ghost-spec">{s}</span>
+              ))}
+            </div>
+            <a href="#contact" className="team__ghost-callout-cta">Work with us →</a>
           </div>
-          <a href="#contact" className="team__ghost-callout-cta">Work with us →</a>
         </div>
       </div>
 
@@ -122,14 +168,22 @@ export default function Team() {
         <div className="team-modal__members">
           {team.map(m => (
             <div key={m.name} className="team-modal__profile">
-              {/* gradient header band */}
-              <div className="team-modal__profile-band" aria-hidden="true" />
 
-              {/* avatar + identity */}
+              {/* ── gradient header band ── */}
+              <div className="team-modal__profile-band" aria-hidden="true">
+                <div className="team-modal__band-orb team-modal__band-orb--1" />
+                <div className="team-modal__band-orb team-modal__band-orb--2" />
+              </div>
+
+              {/* ── avatar + identity ── */}
               <div className="team-modal__profile-center">
-                <div className="team-modal__profile-avatar" aria-hidden="true">{m.initials}</div>
+                <div className="team-modal__avatar-wrap">
+                  <div className="team-modal__avatar-ring" aria-hidden="true" />
+                  <div className="team-modal__profile-avatar" aria-hidden="true">{m.initials}</div>
+                </div>
                 <h3 className="team-modal__profile-name">{m.name}</h3>
-                <p className="team-modal__profile-role">{m.role}</p>
+                <span className="team-modal__profile-role-badge">{m.role}</span>
+                <p className="team-modal__profile-subtitle">Software Engineer · 2.5+ YOE</p>
                 <div className="team-modal__profile-links">
                   {m.github && (
                     <a href={m.github} target="_blank" rel="noopener noreferrer"
@@ -144,22 +198,73 @@ export default function Team() {
                     </a>
                   )}
                 </div>
+                <div className="team-modal__stats">
+                  <div className="team-modal__stat">
+                    <span className="team-modal__stat-val">2.5+</span>
+                    <span className="team-modal__stat-key">Years</span>
+                  </div>
+                  <div className="team-modal__stat-sep" aria-hidden="true" />
+                  <div className="team-modal__stat">
+                    <span className="team-modal__stat-val">2</span>
+                    <span className="team-modal__stat-key">Products</span>
+                  </div>
+                  <div className="team-modal__stat-sep" aria-hidden="true" />
+                  <div className="team-modal__stat">
+                    <span className="team-modal__stat-val">8+</span>
+                    <span className="team-modal__stat-key">Skills</span>
+                  </div>
+                </div>
               </div>
 
-              {/* bio */}
+              {/* ── bio ── */}
               <p className="team-modal__profile-bio">{m.bio}</p>
 
-              {/* ships */}
-              <div className="team-modal__profile-ships">
-                <p className="team-modal__profile-ships-label">Ships</p>
-                <ul className="team-modal__profile-ships-list">
-                  <li>Clinora — clinic management desktop app</li>
-                  <li>KareerOS — AI-powered interview prep platform</li>
-                </ul>
+              {/* ── tech stack ── */}
+              {m.skills && m.skills.length > 0 && (
+                <div className="team-modal__skills">
+                  <p className="team-modal__section-label">Tech Stack</p>
+                  <div className="team-modal__skill-tags">
+                    {m.skills.map(s => (
+                      <span key={s} className="team-modal__skill-tag">{s}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ── shipped products ── */}
+              <div className="team-modal__products">
+                <p className="team-modal__section-label">Shipped Products</p>
+                <div className="team-modal__products-grid">
+                  <div className="team-modal__product-card">
+                    <div className="team-modal__product-icon team-modal__product-icon--clinora" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                      </svg>
+                    </div>
+                    <div className="team-modal__product-info">
+                      <span className="team-modal__product-name">Clinora</span>
+                      <span className="team-modal__product-type">Clinic Management · Desktop</span>
+                    </div>
+                  </div>
+                  <div className="team-modal__product-card">
+                    <div className="team-modal__product-icon team-modal__product-icon--kareeeros" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                      </svg>
+                    </div>
+                    <div className="team-modal__product-info">
+                      <span className="team-modal__product-name">KareerOS</span>
+                      <span className="team-modal__product-type">AI Interview Prep · Web</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+
             </div>
           ))}
 
+          {/* ── specialist network ── */}
           <div className="team-modal__growing">
             <div className="team-modal__growing-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
