@@ -1,18 +1,18 @@
 import { useRef, useEffect } from 'react'
 
 const TRUST_ITEMS = [
-  { text: 'Transparent pricing, no surprises',  accent: true  },
-  { text: 'Reply within 24 hours',              accent: false },
-  { text: '2 live products shipped',            accent: true  },
-  { text: 'NDA ready on request',               accent: false },
-  { text: 'No templates, no boilerplate',       accent: true  },
-  { text: 'Free estimate — zero commitment',    accent: false },
-  { text: 'Defined scope, reliable delivery',   accent: true  },
-  { text: 'Every line written by the builder',  accent: false },
-  { text: 'Open to founders & enterprises',     accent: false },
-  { text: '8 engineering capabilities',         accent: true  },
-  { text: 'No vanishing after launch',          accent: false },
-  { text: 'Direct line — no middleman',         accent: true  },
+  { text: 'Transparent pricing, no surprises',  color: 'violet'  },
+  { text: 'Reply within 24 hours',              color: 'cyan'    },
+  { text: '2 live products shipped',            color: 'emerald' },
+  { text: 'NDA ready on request',               color: 'amber'   },
+  { text: 'No templates, no boilerplate',       color: 'violet'  },
+  { text: 'Free estimate — zero commitment',    color: 'cyan'    },
+  { text: 'Defined scope, reliable delivery',   color: 'emerald' },
+  { text: 'Every line written by the builder',  color: 'amber'   },
+  { text: 'Open to founders & enterprises',     color: 'violet'  },
+  { text: '8 engineering capabilities',         color: 'cyan'    },
+  { text: 'No vanishing after launch',          color: 'emerald' },
+  { text: 'Direct line — no middleman',         color: 'amber'   },
 ]
 
 export default function TrustTicker() {
@@ -38,7 +38,7 @@ export default function TrustTicker() {
       const w = track.scrollWidth
       if (!w) return
       st.totalWidth = w / 2
-      st.speed = st.totalWidth / (60 * 60) // 60-second loop at ~60fps
+      st.speed = st.totalWidth / (60 * 60)
     }
 
     const tick = () => {
@@ -56,7 +56,6 @@ export default function TrustTicker() {
     const ro = new ResizeObserver(measure)
     ro.observe(track)
 
-    /* ── Mouse drag ── */
     const onDown = (e) => {
       st.dragging = true
       st.startX   = e.clientX
@@ -77,7 +76,6 @@ export default function TrustTicker() {
       wrap.style.cursor = 'grab'
     }
 
-    /* ── Touch drag ── */
     const onTouchStart = (e) => {
       st.dragging = true
       st.startX   = e.touches[0].clientX
@@ -117,10 +115,8 @@ export default function TrustTicker() {
     <div className="trust-ticker" ref={wrapRef} aria-hidden="true">
       <div className="trust-ticker__track" ref={trackRef}>
         {all.map((item, i) => (
-          <span key={i} className="trust-ticker__item">
-            <span className={`trust-ticker__text${item.accent ? ' trust-ticker__text--accent' : ''}`}>
-              {item.text}
-            </span>
+          <span key={i} className={`trust-ticker__item trust-ticker__item--${item.color}`}>
+            <span className="trust-ticker__text">{item.text}</span>
             <span className="trust-ticker__sep" aria-hidden="true">◆</span>
           </span>
         ))}
