@@ -121,6 +121,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* ===== BASE ===== */
@@ -136,6 +137,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: transparent;
   color: var(--color-text);
   font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -6338,6 +6340,7 @@ a.product-detail__resource:hover {
 .team-section {
   background: var(--color-bg);
   position: relative;
+  overflow-x: clip;
 }
 .team-section::before {
   content: '';
