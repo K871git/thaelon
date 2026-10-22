@@ -36,10 +36,10 @@
 
 /* Slide from left on scroll entry — directional, matches the card hover X-slide */
 .about__value-card.reveal {
-  transform: translateX(-20px) scale(0.97);
+  transform: translateX(-14px);
 }
 .about__value-card.reveal.revealed {
-  transform: translateX(0) scale(1);
+  transform: translateX(0);
 }
 
 .about__value-card:hover {
@@ -506,15 +506,6 @@
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 18px;
   margin-top: 56px;
-}
-
-/* Skew-unfold entry — steps appear to tilt forward and land flat */
-.process__step.reveal {
-  transform: translateY(20px) skewY(3deg);
-  transform-origin: left center;
-}
-.process__step.reveal.revealed {
-  transform: translateY(0) skewY(0deg);
 }
 
 .process__step {

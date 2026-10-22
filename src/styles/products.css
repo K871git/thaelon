@@ -7,9 +7,9 @@
 }
 
 /* Alternating slide — left for normal rows, right for flipped rows */
-.products__row.reveal { transform: translateX(-32px) scale(0.98); }
-.products__row--flip.reveal { transform: translateX(32px) scale(0.98); }
-.products__row.reveal.revealed { transform: translateX(0) scale(1); }
+.products__row.reveal { transform: translateX(-20px); }
+.products__row--flip.reveal { transform: translateX(20px); }
+.products__row.reveal.revealed { transform: translateX(0); }
 
 .products__row {
   display: grid;

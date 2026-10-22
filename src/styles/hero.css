@@ -2,11 +2,11 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(36px) scale(0.97);
+    transform: translateY(26px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -35,11 +35,11 @@
 @keyframes revealFloat {
   from {
     opacity: 0;
-    transform: translateX(40px) scale(0.96);
+    transform: translateX(24px);
   }
   to {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateX(0);
   }
 }
 
@@ -89,7 +89,7 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   margin-bottom: 32px;
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+  animation: fadeUp 0.65s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both;
 }
 
 .hero__badge-dot {
@@ -113,7 +113,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 24px;
-  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.17s both, heroGradDrift 9s 0.8s ease-in-out infinite;
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.18s both, heroGradDrift 9s 0.8s ease-in-out infinite;
 }
 
 @keyframes heroGradDrift {
@@ -129,7 +129,7 @@
   color: var(--color-muted);
   letter-spacing: 0.01em;
   margin-bottom: 24px;
-  animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
 .hero__desc {
@@ -139,7 +139,7 @@
   max-width: 520px;
   line-height: 1.6;
   margin-bottom: 44px;
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.42s both;
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.42s both;
   letter-spacing: -0.01em;
 }
 
@@ -147,7 +147,7 @@
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.53s both;
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.53s both;
 }
 
 /* Hero stats row */
@@ -156,7 +156,7 @@
   align-items: center;
   gap: 0;
   margin-top: 44px;
-  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.64s both;
+  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.64s both;
 }
 
 .hero__stat {
@@ -263,7 +263,7 @@
   flex-shrink: 0;
   pointer-events: none;
   opacity: 0;
-  animation: revealFloat 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+  animation: revealFloat 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.38s both;
 }
 
 .hero__terminal {

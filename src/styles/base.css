@@ -275,8 +275,8 @@ main { animation: siteEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both; }
 
 /* Section label slides from left rather than up — more directional, matches the shimmer sweep */
 .section-label.reveal {
-  transform: translateX(-14px);
-  transition-duration: 0.45s;
+  transform: translateX(-10px);
+  transition-duration: 0.5s;
 }
 .section-label.reveal.revealed {
   transform: translateX(0);
@@ -284,16 +284,16 @@ main { animation: siteEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both; }
 
 /* ===== SCROLL REVEAL ===== */
 /* Dark mode: elements rise from further with a slight scale-in (space depth feel) */
-[data-theme="dark"]  { --rv-y: 30px; --rv-scale: 0.965; }
+[data-theme="dark"]  { --rv-y: 20px; --rv-scale: 0.984; }
 /* Light mode: softer, shorter lift — airy and clean */
-[data-theme="light"] { --rv-y: 16px; --rv-scale: 1.000; }
+[data-theme="light"] { --rv-y: 12px; --rv-scale: 1.000; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(var(--rv-y, 22px)) scale(var(--rv-scale, 1));
+  transform: translateY(var(--rv-y, 20px)) scale(var(--rv-scale, 1));
   transition:
-    opacity 0.55s ease var(--reveal-delay, 0s),
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+    opacity  0.72s cubic-bezier(0.4, 0, 0.2, 1) var(--reveal-delay, 0s),
+    transform 0.72s cubic-bezier(0.4, 0, 0.2, 1) var(--reveal-delay, 0s);
 }
 
 .reveal.revealed {

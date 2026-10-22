@@ -503,9 +503,9 @@
   margin-bottom: 56px;
 }
 
-/* Scale-pop entry — promise cards inflate into place */
+/* Subtle scale-up entry — promise cards gently expand into place */
 .craft__promise.reveal {
-  transform: translateY(18px) scale(0.93);
+  transform: translateY(16px) scale(0.97);
 }
 .craft__promise.reveal.revealed {
   transform: translateY(0) scale(1);
