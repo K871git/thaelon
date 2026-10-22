@@ -11,7 +11,6 @@ import Process from './sections/Process'
 import ProductListing from './sections/ProductListing'
 import Craft from './sections/Craft'
 import Team from './sections/Team'
-// import Testimonials from './sections/Testimonials'
 import Pricing from './sections/Pricing'
 import Contact from './sections/Contact'
 import useScrollReveal from './hooks/useScrollReveal'
@@ -47,7 +46,6 @@ export default function App() {
         <ProductListing />
         <Craft />
         <Team />
-        {/* <Testimonials /> */}
         <TrustTicker />
         <Pricing />
         <Contact />

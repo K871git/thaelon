@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 
 const STATS = [
   { target: 2, label: 'Live products' },
@@ -53,13 +53,13 @@ export default function Hero() {
 
           <div className="hero__stats" aria-label="Quick stats">
             {STATS.map((s, i) => (
-              <>
-                {i > 0 && <div key={`div-${i}`} className="hero__stat-divider" aria-hidden="true" />}
-                <div key={s.label} className="hero__stat">
+              <Fragment key={s.label}>
+                {i > 0 && <div className="hero__stat-divider" aria-hidden="true" />}
+                <div className="hero__stat">
                   <span className="hero__stat-num" aria-label={String(s.target)}>{counts[i]}</span>
                   <span className="hero__stat-label">{s.label}</span>
                 </div>
-              </>
+              </Fragment>
             ))}
           </div>
         </div>
