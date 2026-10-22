@@ -503,6 +503,14 @@
   margin-bottom: 56px;
 }
 
+/* Scale-pop entry — promise cards inflate into place */
+.craft__promise.reveal {
+  transform: translateY(18px) scale(0.93);
+}
+.craft__promise.reveal.revealed {
+  transform: translateY(0) scale(1);
+}
+
 .craft__promise {
   position: relative;
   padding: 28px 22px 26px;

@@ -243,6 +243,23 @@ main { animation: siteEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both; }
   letter-spacing: -0.03em;
   margin-bottom: 16px;
   line-height: 1.08;
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-accent) 0%, transparent 100%);
+  border-radius: 2px;
+  transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+
+.section-heading.revealed::after {
+  width: 52px;
 }
 
 .section-desc {
@@ -255,6 +272,15 @@ main { animation: siteEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both; }
 /* Auto-stagger section intro elements — label fires first, then heading, then desc */
 .section-heading.reveal { --reveal-delay: 0.08s; }
 .section-desc.reveal    { --reveal-delay: 0.16s; }
+
+/* Section label slides from left rather than up — more directional, matches the shimmer sweep */
+.section-label.reveal {
+  transform: translateX(-14px);
+  transition-duration: 0.45s;
+}
+.section-label.reveal.revealed {
+  transform: translateX(0);
+}
 
 /* ===== SCROLL REVEAL ===== */
 /* Dark mode: elements rise from further with a slight scale-in (space depth feel) */
