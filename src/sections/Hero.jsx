@@ -2,8 +2,8 @@ import { Fragment, useState, useEffect } from 'react'
 
 const STATS = [
   { target: 2, label: 'Live products' },
-  { target: 5, label: 'Phases' },
-  { target: 8, label: 'Core capabilities' },
+  { target: 3, label: 'Years building' },
+  { target: 24, label: 'Hour estimates' },
 ]
 
 export default function Hero() {
@@ -40,7 +40,7 @@ export default function Hero() {
 
           <h1 className="hero__title">THAELON</h1>
 
-          <p className="hero__tagline">Imagine. Engineer. Evolve.</p>
+          <p className="hero__tagline">Your idea deserves to be built right.</p>
 
           <p className="hero__desc">
             Two live products. Eight engineering layers. One team that ships.
@@ -48,7 +48,7 @@ export default function Hero() {
 
           <div className="hero__actions">
             <a href="#products" className="btn btn-primary">View Our Work</a>
-            <a href="#contact" className="btn btn-secondary">Get a free estimate</a>
+            <a href="#contact" className="btn btn-secondary">Start a conversation →</a>
           </div>
 
           <div className="hero__stats" aria-label="Quick stats">

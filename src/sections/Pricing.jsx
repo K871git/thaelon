@@ -84,9 +84,9 @@ export default function Pricing() {
     <section className="section pricing" id="pricing" aria-labelledby="pricing-heading">
       <div className="container">
         <span className="section-label reveal">Pricing</span>
-        <h2 className="section-heading reveal" id="pricing-heading">Built for your budget</h2>
+        <h2 className="section-heading reveal" id="pricing-heading">Every rupee goes into the product.</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          Pricing that adapts to what you actually need — not what we want to sell.
+          No hourly billing. No retainer surprises. You know the number before we start.
         </p>
 
         <div className="pricing__grid">

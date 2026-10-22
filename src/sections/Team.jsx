@@ -33,8 +33,9 @@ export default function Team() {
         <span className="section-label reveal">Who builds Thaelon</span>
         <h2 className="section-heading reveal" id="team-heading">Founder-led, craft-driven</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          A single engineer who designs, builds, and ships — with a trusted network
-          of specialists brought in for scope that needs it.
+          When you work with Thaelon, you work with the founder. Not an account manager.
+          Not a junior dev. The person who built Clinora and KareerOS from scratch —
+          on your project, from day one.
         </p>
 
         <div className="team__collective reveal" style={{ '--reveal-delay': '0.1s' }}>

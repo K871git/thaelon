@@ -1,7 +1,7 @@
 const values = [
   {
     label: 'Shipped, not just built',
-    desc: 'Two live products in production. Every client project goes live — not into a drawer.',
+    desc: 'Two products in production. Every client engagement ends with working software — not a prototype, not a beta.',
     color: 'emerald',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -11,7 +11,7 @@ const values = [
   },
   {
     label: 'Deep, not broad',
-    desc: '8 engineering layers. One team. No handoffs between specialists who never talk to each other.',
+    desc: 'One person owns your project from architecture to deployment. No context lost between layers.',
     color: 'violet',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -21,7 +21,7 @@ const values = [
   },
   {
     label: 'Honest from the start',
-    desc: 'Scope is defined before a line of code is written. Price doesn\'t change unless the spec does.',
+    desc: 'Scope, timeline, and price agreed before we start. If something can\'t be done, you hear it from us — before the invoice.',
     color: 'amber',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -42,21 +42,9 @@ export default function About() {
               Built by engineers<br />who ship
             </h2>
             <p className="about__body reveal" style={{ '--reveal-delay': '0.08s' }}>
-              Thaelon has shipped two production systems — Clinora, a full-featured
-              clinic management desktop app running in medical practices, and KareerOS,
-              an AI-powered interview prep platform. We build our own products because
-              we believe the best engineers ship, not just consult.
-            </p>
-            <p className="about__body reveal" style={{ '--reveal-delay': '0.14s' }}>
-              We take on client work where we can deliver something real — AI
-              integrations with actual inference pipelines, full-stack applications that
-              hold up under load, and offline-first systems for environments where the
-              internet isn't reliable. We don't take projects we can't finish.
-            </p>
-            <p className="about__body reveal" style={{ '--reveal-delay': '0.20s' }}>
-              Engagements are scoped clearly, priced honestly, and delivered on a
-              defined timeline. No retainers that go nowhere. No feature creep. If
-              something can't be done within your budget, we tell you before we start.
+              Every project we take on gets treated like our own — because we know what
+              it takes to ship something real. Thaelon was built on that standard.
+              Your idea will be too.
             </p>
           </div>
 

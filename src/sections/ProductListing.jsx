@@ -171,9 +171,9 @@ export default function ProductListing() {
     <section className="section" id="products" aria-labelledby="products-heading">
       <div className="container">
         <span className="section-label reveal">Products</span>
-        <h2 className="section-heading reveal" id="products-heading">What we've built</h2>
+        <h2 className="section-heading reveal" id="products-heading">Software live in production</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
-          SaaS platforms and installable products — built by Thaelon, ready to deploy.
+          Two products built from scratch, deployed, and actively used — not mockups, not side projects.
         </p>
 
         <div className="products__list">

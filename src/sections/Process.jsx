@@ -98,7 +98,7 @@ export default function Process() {
     <section className="section process" id="process" aria-labelledby="process-heading">
       <div className="container">
         <span className="section-label reveal">How We Work</span>
-        <h2 className="section-heading reveal" id="process-heading">From idea to impact</h2>
+        <h2 className="section-heading reveal" id="process-heading">How an idea becomes something you're proud to ship.</h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
           Most projects don't fail at the code level — they fail before a line of code
           is written. Our five-phase process closes every gap: planning, architecture,

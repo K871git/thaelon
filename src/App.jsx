@@ -39,14 +39,14 @@ export default function App() {
       <Nav theme={theme} onToggleTheme={toggleTheme} />
       <main>
         <Hero />
-        <CodeTicker />
         <About />
-        <Skills />
-        <Process />
+        <CodeTicker />
         <ProductListing />
         <Craft />
+        <Process />
         <Team />
         <TrustTicker />
+        <Skills />
         <Pricing />
         <Contact />
       </main>

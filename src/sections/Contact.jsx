@@ -88,11 +88,10 @@ export default function Contact() {
         <div className="contact__head reveal">
           <span className="section-label">Get in touch</span>
           <h2 className="section-heading" id="contact-heading">
-            Let's scope it together
+            Tell us what you're building.
           </h2>
           <p className="section-desc" style={{ '--reveal-delay': '0.04s' }}>
-            No forms that vanish into a CRM. Every message is read personally
-            and answered with a real estimate — not a sales pitch.
+            You'll hear back from Kishor directly — within 24 hours, every time.
           </p>
         </div>
 

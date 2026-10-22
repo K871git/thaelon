@@ -222,35 +222,6 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Next-gen engineering capabilities */}
-        <div className="capabilities">
-          <div className="capabilities__intro reveal" style={{ '--reveal-delay': '0.05s' }}>
-            <span className="capabilities__eyebrow">Core Competencies</span>
-            <h3 className="capabilities__heading">No weak layers</h3>
-            <p className="capabilities__sub">
-              AI-era products fail at the seams — where the model meets the API, where
-              the API meets the frontend, where code meets the cloud. Thaelon goes deep
-              across all eight layers so nothing breaks at handoff.
-            </p>
-          </div>
-          <div className="capabilities__grid">
-            {CAPABILITIES.map((cap, i) => (
-              <div
-                key={cap.name}
-                className={`capabilities__item reveal capabilities__item--${cap.level}`}
-                style={{ '--reveal-delay': `${i * 0.05}s` }}
-              >
-                <div className="capabilities__icon-wrap" aria-hidden="true">{cap.icon}</div>
-                <div className="capabilities__body">
-                  <span className="capabilities__name">{cap.name}</span>
-                  <span className="capabilities__badge">
-                    {cap.level === 'extreme' ? 'Core' : 'High'}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       <Modal isOpen={!!modal} onClose={close} title={modal?.category}>

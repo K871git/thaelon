@@ -179,8 +179,8 @@ export default function Craft() {
 
         <span className="section-label reveal">Our Craft</span>
         <h2 className="section-heading craft__heading reveal" id="craft-heading">
-          You bring the idea,<br />
-          we deliver the vision.
+          Your name goes on it.<br />
+          So does ours.
         </h2>
         <p className="section-desc reveal" style={{ '--reveal-delay': '0.05s' }}>
           From a simple AI assistant to a fully custom ERP — whatever you need built,
@@ -262,12 +262,12 @@ export default function Craft() {
         {/* ── CTA strip ── */}
         <div className="craft__cta reveal" style={{ '--reveal-delay': '0.1s' }}>
           <p className="craft__cta-line">
-            From your first idea to your{' '}
-            <em>last deployment</em>
-            {' '}— let&apos;s scope it together.
+            Every line of code we write carries{' '}
+            <em>your name on it</em>
+            {' '}— and ours. We don&apos;t ship anything we&apos;re not proud of.
           </p>
           <a href="#contact" className="btn btn-primary craft__cta-btn">
-            Get a free estimate
+            Start a conversation →
           </a>
         </div>
 
