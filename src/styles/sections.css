@@ -2605,46 +2605,64 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
   color: var(--color-muted);
-  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    color      0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform  0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer__social-link:hover {
-  box-shadow: 0 0 0 3px rgba(124, 106, 247, 0.12);
+  transform: translateY(-3px) scale(1.08);
 }
 
+/* ── Platform brand colours ───────────────────────────────────── */
 .footer__social-link[aria-label="GitHub"]:hover {
   color: #e6edf3;
-  border-color: rgba(230, 237, 243, .3);
+  background: rgba(230, 237, 243, 0.08);
+  border-color: rgba(230, 237, 243, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(230, 237, 243, 0.08);
 }
 
 .footer__social-link[aria-label="LinkedIn"]:hover {
   color: #0A66C2;
-  border-color: rgba(10, 102, 194, .4);
+  background: rgba(10, 102, 194, 0.12);
+  border-color: rgba(10, 102, 194, 0.4);
+  box-shadow: 0 4px 18px rgba(10, 102, 194, 0.25), 0 0 0 3px rgba(10, 102, 194, 0.1);
 }
 
 .footer__social-link[aria-label="WhatsApp"]:hover {
   color: #25D366;
-  border-color: rgba(37, 211, 102, .4);
+  background: rgba(37, 211, 102, 0.1);
+  border-color: rgba(37, 211, 102, 0.38);
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.22), 0 0 0 3px rgba(37, 211, 102, 0.08);
 }
 
 .footer__social-link[aria-label="Instagram"]:hover {
-  color: #e1306c;
-  border-color: rgba(225, 48, 108, .4);
+  color: #fff;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(220, 39, 67, 0.4), 0 0 0 3px rgba(220, 39, 67, 0.12);
 }
 
 .footer__social-link[aria-label="Twitter / X"]:hover {
   color: #e7e9ea;
-  border-color: rgba(231, 233, 234, .3);
+  background: rgba(231, 233, 234, 0.07);
+  border-color: rgba(231, 233, 234, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(231, 233, 234, 0.07);
 }
 
 .footer__social-link[aria-label="Facebook"]:hover {
   color: #1877F2;
-  border-color: rgba(24, 119, 242, .4);
+  background: rgba(24, 119, 242, 0.1);
+  border-color: rgba(24, 119, 242, 0.38);
+  box-shadow: 0 4px 18px rgba(24, 119, 242, 0.25), 0 0 0 3px rgba(24, 119, 242, 0.1);
 }
 
 .footer__social-link svg {

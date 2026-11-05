@@ -41,7 +41,7 @@ export default function Footer() {
             Scope it with us — free, honest, no commitment.
           </p>
           <a href="#contact" className="btn btn-primary cta-band__btn">
-            Get a free estimate
+            Start a conversation →
           </a>
         </div>
       </div>
@@ -51,9 +51,9 @@ export default function Footer() {
           <div className="footer__body">
             <div className="footer__brand">
               <img src="./Thaelon-removebg.png" alt="THAELON" className="footer__logo-img" />
-              <span className="footer__tagline">Imagine. Engineer. Evolve.</span>
+              <span className="footer__tagline">Trust. Craft. Bond.</span>
               <p className="footer__about">
-                A future-facing engineering team building intelligent products — from AI pipelines and full-stack apps to desktop tools that actually ship.
+                We build real software — products you can put your name on. From idea to production, every line of code is built to Thaelon's standard.
               </p>
               <div className="footer__social">
                 <a href="https://github.com/K871git" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="GitHub">
