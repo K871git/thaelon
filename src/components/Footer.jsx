@@ -112,7 +112,9 @@ export default function Footer() {
 
           <div className="footer__bottom">
             <p className="footer__copy">© 2026 Thaelon. All rights reserved.</p>
-            <p className="footer__bottom-note">Built by Thaelon</p>
+            <p className="footer__bottom-note">
+              <span aria-hidden="true">◆ </span>Designed &amp; built by Thaelon
+            </p>
           </div>
         </div>
       </footer>

@@ -2605,64 +2605,112 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   border: 1px solid var(--color-border);
-  color: var(--color-muted);
   transition:
-    color      0.22s ease,
-    background 0.22s ease,
+    color        0.22s ease,
+    background   0.22s ease,
     border-color 0.22s ease,
-    box-shadow 0.22s ease,
-    transform  0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow   0.22s ease,
+    transform    0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Brand colours visible at rest — muted, full on hover ─────── */
+.footer__social-link[aria-label="GitHub"] {
+  color: rgba(230, 237, 243, 0.5);
+  background: rgba(230, 237, 243, 0.05);
+  border-color: rgba(230, 237, 243, 0.12);
+}
+[data-theme="light"] .footer__social-link[aria-label="GitHub"] {
+  color: rgba(36, 41, 47, 0.55);
+  background: rgba(36, 41, 47, 0.05);
+  border-color: rgba(36, 41, 47, 0.14);
+}
+.footer__social-link[aria-label="LinkedIn"] {
+  color: rgba(10, 102, 194, 0.7);
+  background: rgba(10, 102, 194, 0.06);
+  border-color: rgba(10, 102, 194, 0.18);
+}
+.footer__social-link[aria-label="WhatsApp"] {
+  color: rgba(37, 211, 102, 0.65);
+  background: rgba(37, 211, 102, 0.05);
+  border-color: rgba(37, 211, 102, 0.16);
+}
+.footer__social-link[aria-label="Instagram"] {
+  color: rgba(220, 39, 67, 0.65);
+  background: rgba(220, 39, 67, 0.05);
+  border-color: rgba(220, 39, 67, 0.16);
+}
+.footer__social-link[aria-label="Twitter / X"] {
+  color: rgba(231, 233, 234, 0.5);
+  background: rgba(231, 233, 234, 0.05);
+  border-color: rgba(231, 233, 234, 0.12);
+}
+[data-theme="light"] .footer__social-link[aria-label="Twitter / X"] {
+  color: rgba(15, 20, 25, 0.55);
+  background: rgba(15, 20, 25, 0.05);
+  border-color: rgba(15, 20, 25, 0.14);
+}
+.footer__social-link[aria-label="Facebook"] {
+  color: rgba(24, 119, 242, 0.7);
+  background: rgba(24, 119, 242, 0.06);
+  border-color: rgba(24, 119, 242, 0.18);
 }
 
 .footer__social-link:hover {
-  transform: translateY(-3px) scale(1.08);
+  transform: translateY(-3px) scale(1.1);
 }
 
-/* ── Platform brand colours ───────────────────────────────────── */
+/* ── Full brand colours on hover ─────────────────────────────── */
 .footer__social-link[aria-label="GitHub"]:hover {
   color: #e6edf3;
-  background: rgba(230, 237, 243, 0.08);
-  border-color: rgba(230, 237, 243, 0.22);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(230, 237, 243, 0.08);
+  background: rgba(230, 237, 243, 0.1);
+  border-color: rgba(230, 237, 243, 0.26);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 0 3px rgba(230, 237, 243, 0.08);
 }
-
+[data-theme="light"] .footer__social-link[aria-label="GitHub"]:hover {
+  color: #24292f;
+  background: rgba(36, 41, 47, 0.1);
+  border-color: rgba(36, 41, 47, 0.3);
+  box-shadow: 0 6px 20px rgba(36, 41, 47, 0.2), 0 0 0 3px rgba(36, 41, 47, 0.08);
+}
 .footer__social-link[aria-label="LinkedIn"]:hover {
   color: #0A66C2;
-  background: rgba(10, 102, 194, 0.12);
-  border-color: rgba(10, 102, 194, 0.4);
-  box-shadow: 0 4px 18px rgba(10, 102, 194, 0.25), 0 0 0 3px rgba(10, 102, 194, 0.1);
+  background: rgba(10, 102, 194, 0.14);
+  border-color: rgba(10, 102, 194, 0.42);
+  box-shadow: 0 6px 20px rgba(10, 102, 194, 0.3), 0 0 0 3px rgba(10, 102, 194, 0.1);
 }
-
 .footer__social-link[aria-label="WhatsApp"]:hover {
   color: #25D366;
-  background: rgba(37, 211, 102, 0.1);
-  border-color: rgba(37, 211, 102, 0.38);
-  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.22), 0 0 0 3px rgba(37, 211, 102, 0.08);
+  background: rgba(37, 211, 102, 0.12);
+  border-color: rgba(37, 211, 102, 0.4);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.26), 0 0 0 3px rgba(37, 211, 102, 0.08);
 }
-
 .footer__social-link[aria-label="Instagram"]:hover {
   color: #fff;
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   border-color: transparent;
-  box-shadow: 0 4px 20px rgba(220, 39, 67, 0.4), 0 0 0 3px rgba(220, 39, 67, 0.12);
+  box-shadow: 0 6px 24px rgba(220, 39, 67, 0.45), 0 0 0 3px rgba(220, 39, 67, 0.12);
 }
-
 .footer__social-link[aria-label="Twitter / X"]:hover {
   color: #e7e9ea;
-  background: rgba(231, 233, 234, 0.07);
-  border-color: rgba(231, 233, 234, 0.22);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(231, 233, 234, 0.07);
+  background: rgba(231, 233, 234, 0.09);
+  border-color: rgba(231, 233, 234, 0.26);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(231, 233, 234, 0.07);
 }
-
+[data-theme="light"] .footer__social-link[aria-label="Twitter / X"]:hover {
+  color: #0f1419;
+  background: rgba(15, 20, 25, 0.09);
+  border-color: rgba(15, 20, 25, 0.28);
+  box-shadow: 0 6px 20px rgba(15, 20, 25, 0.18), 0 0 0 3px rgba(15, 20, 25, 0.07);
+}
 .footer__social-link[aria-label="Facebook"]:hover {
   color: #1877F2;
-  background: rgba(24, 119, 242, 0.1);
-  border-color: rgba(24, 119, 242, 0.38);
-  box-shadow: 0 4px 18px rgba(24, 119, 242, 0.25), 0 0 0 3px rgba(24, 119, 242, 0.1);
+  background: rgba(24, 119, 242, 0.14);
+  border-color: rgba(24, 119, 242, 0.42);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.3), 0 0 0 3px rgba(24, 119, 242, 0.1);
 }
 
 .footer__social-link svg {
@@ -2729,9 +2777,14 @@
   color: var(--color-muted);
 }
 
+.footer__col {
+  padding-left: 28px;
+  border-left: 1px solid var(--color-border);
+}
+
 .footer__bottom {
   border-top: 1px solid var(--color-border);
-  padding: 18px 0;
+  padding: 20px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2745,8 +2798,8 @@
 
 .footer__bottom-note {
   font-size: 12.5px;
-  color: var(--color-muted);
-  opacity: 0.7;
+  color: var(--color-accent);
+  opacity: 0.75;
 }
 
 @media (max-width: 900px) {
